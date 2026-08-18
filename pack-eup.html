@@ -1,366 +1,1214 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pack EUP Secours Français — Skotaz Modding</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --rouge: #E8212B;
-      --bleu: #003F8A;
-      --bleu-clair: #1A6FC4;
-      --or: #F5C518;
-      --blanc: #F4F6FA;
-      --gris-clair: #E8EBF0;
-      --gris: #8A95A3;
-      --fond: #0D1117;
-      --fond2: #141B24;
-      --fond3: #1C2535;
-      --bordure: rgba(255,255,255,0.07);
-      --vert: #28C76F;
-      --cyan: #17A2B8;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scrollbar-width: thin; scrollbar-color: var(--bleu) var(--fond2); }
-    html::-webkit-scrollbar { width: 6px; }
-    html::-webkit-scrollbar-track { background: var(--fond2); }
-    html::-webkit-scrollbar-thumb { background: var(--bleu); border-radius: 3px; }
-    body { font-family: 'Barlow', sans-serif; background-color: var(--fond); color: var(--blanc); line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
-    .topbar { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--bordure); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
-    .topbar-brand { display: flex; align-items: center; gap: 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; color: var(--blanc); text-decoration: none; }
-    .topbar-brand-dot { width: 8px; height: 8px; background: var(--rouge); border-radius: 50%; box-shadow: 0 0 8px var(--rouge); animation: pulse-dot 2s ease-in-out infinite; }
-    @keyframes pulse-dot { 0%, 100% { box-shadow: 0 0 8px var(--rouge); } 50% { box-shadow: 0 0 16px var(--rouge), 0 0 32px rgba(232,33,43,0.4); } }
-    .topbar-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; background: rgba(0,63,138,0.25); color: #6FA8FF; border: 1px solid rgba(0,63,138,0.5); }
-    .hero { position: relative; min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 60px 20px; }
-    .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(to bottom, rgba(13,17,23,0.55) 0%, rgba(13,17,23,0.92) 100%), url('https://i.ibb.co/NRvv9fL/BANNIERE.png'); background-size: cover; background-position: center 30%; filter: saturate(0.6); }
-    .hero-noise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.4; pointer-events: none; }
-    .hero-stripe { position: absolute; left: 0; right: 0; height: 3px; display: flex; }
-    .hero-stripe.top { top: 0; } .hero-stripe.bottom { bottom: 0; } .hero-stripe span { flex: 1; } .hero-stripe span:nth-child(1) { background: #002395; } .hero-stripe span:nth-child(2) { background: #EDEDED; } .hero-stripe span:nth-child(3) { background: #ED2939; }
-    .hero-content { position: relative; text-align: center; max-width: 780px; }
-    .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gris); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-    .hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; line-height: 1; text-transform: uppercase; letter-spacing: 3px; color: #fff; margin-bottom: 16px; }
-    .hero-title em { font-style: normal; color: var(--rouge); }
-    .hero-subtitle { font-size: 1.05rem; font-weight: 300; color: rgba(244,246,250,0.65); margin-bottom: 36px; letter-spacing: 0.5px; }
-    .btn-hero { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #C41826 0%, #8B0F1A 100%); color: #fff; padding: 16px 40px; border-radius: 6px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 2.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 8px 30px rgba(196,24,38,0.4), inset 0 1px 0 rgba(255,255,255,0.1); transition: all 0.25s ease; position: relative; overflow: hidden; }
-    .btn-hero::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transition: left 0.5s ease; }
-    .btn-hero:hover::before { left: 100%; } .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(196,24,38,0.55), inset 0 1px 0 rgba(255,255,255,0.1); }
-    .btn-hero-meta { display: block; font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 400; letter-spacing: 1px; opacity: 0.7; margin-top: 3px; }
-    .stats-bar { display: flex; justify-content: center; gap: 0; margin: 0 auto; max-width: 680px; border: 1px solid var(--bordure); border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); }
-    .stat-item { flex: 1; text-align: center; padding: 16px 20px; border-right: 1px solid var(--bordure); transition: background 0.2s; }
-    .stat-item:last-child { border-right: none; } .stat-item:hover { background: rgba(255,255,255,0.04); }
-    .stat-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--blanc); display: block; }
-    .stat-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); display: block; margin-top: 2px; }
-    .main-wrap { max-width: 880px; margin: 0 auto; padding: 60px 24px 80px; }
-    /* rest of styles unchanged (kept from original) */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack EUP Secours Français — Skotaz Modding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rouge: #E8212B;
+            --bleu: #003F8A;
+            --bleu-clair: #1A6FC4;
+            --or: #F5C518;
+            --blanc: #F4F6FA;
+            --gris-clair: #E8EBF0;
+            --gris: #8A95A3;
+            --fond: #0D1117;
+            --fond2: #141B24;
+            --fond3: #1C2535;
+            --bordure: rgba(255,255,255,0.07);
+            --vert: #28C76F;
+            --cyan: #17A2B8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--bleu) var(--fond2);
+        }
+        html::-webkit-scrollbar { width: 6px; }
+        html::-webkit-scrollbar-track { background: var(--fond2); }
+        html::-webkit-scrollbar-thumb { background: var(--bleu); border-radius: 3px; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--fond);
+            color: var(--blanc);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── BARRE DE NAVIGATION ─── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13,17,23,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--bordure);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 64px;
+        }
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blanc);
+            text-decoration: none;
+        }
+        .topbar-brand-dot {
+            width: 8px; height: 8px;
+            background: var(--rouge);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--rouge);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 8px var(--rouge); }
+            50% { box-shadow: 0 0 16px var(--rouge), 0 0 32px rgba(232,33,43,0.4); }
+        }
+        .topbar-badge {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 4px;
+            background: rgba(0,63,138,0.25);
+            color: #6FA8FF;
+            border: 1px solid rgba(0,63,138,0.5);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 60px 20px;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to bottom, rgba(13,17,23,0.55) 0%, rgba(13,17,23,0.92) 100%),
+                url('https://i.ibb.co/NRvv9fL/BANNIERE.png');
+            background-size: cover;
+            background-position: center 30%;
+            filter: saturate(0.6);
+        }
+        .hero-noise {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .hero-stripe {
+            position: absolute;
+            left: 0; right: 0;
+            height: 3px;
+            display: flex;
+        }
+        .hero-stripe.top { top: 0; }
+        .hero-stripe.bottom { bottom: 0; }
+        .hero-stripe span { flex: 1; }
+        .hero-stripe span:nth-child(1) { background: #002395; }
+        .hero-stripe span:nth-child(2) { background: #EDEDED; }
+        .hero-stripe span:nth-child(3) { background: #ED2939; }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 780px;
+        }
+        .hero-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gris);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: '';
+            width: 40px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gris));
+        }
+        .hero-eyebrow::after { transform: scaleX(-1); }
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .hero-title em {
+            font-style: normal;
+            color: var(--rouge);
+        }
+        .hero-subtitle {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(244,246,250,0.65);
+            margin-bottom: 36px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ─── BOUTON TÉLÉCHARGEMENT PRINCIPAL ─── */
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #C41826 0%, #8B0F1A 100%);
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 30px rgba(196,24,38,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-hero:hover::before { left: 100%; }
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(196,24,38,0.55), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .btn-hero-meta {
+            display: block;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            margin-top: 3px;
+        }
+
+        /* ─── STATS RAPIDES ─── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin: 0 auto;
+            max-width: 680px;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+        }
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 16px 20px;
+            border-right: 1px solid var(--bordure);
+            transition: background 0.2s;
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-item:hover { background: rgba(255,255,255,0.04); }
+        .stat-value {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--blanc);
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gris);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* ─── CONTENU PRINCIPAL ─── */
+        .main-wrap {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* ─── SECTION TITRE ─── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            margin-top: 56px;
+        }
+        .section-header:first-of-type { margin-top: 0; }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--bordure), transparent);
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gris);
+        }
+
+        /* ─── ÉTAPES ─── */
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            counter-reset: step-counter;
+        }
+
+        .step-card {
+            display: flex;
+            gap: 0;
+            position: relative;
+            animation: fadeSlide 0.5s ease both;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 56px;
+            flex-shrink: 0;
+        }
+        .step-num {
+            counter-increment: step-counter;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: var(--fond3);
+            border: 2px solid var(--bordure);
+            color: var(--gris);
+            transition: all 0.2s;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .step-num.active {
+            background: var(--bleu);
+            border-color: var(--bleu-clair);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0,63,138,0.5);
+        }
+        .step-num.warn {
+            background: rgba(245,197,24,0.1);
+            border-color: var(--or);
+            color: var(--or);
+        }
+        .step-num.done {
+            background: rgba(40,199,111,0.1);
+            border-color: var(--vert);
+            color: var(--vert);
+        }
+        .step-vline {
+            width: 1px;
+            flex: 1;
+            min-height: 24px;
+            background: var(--bordure);
+            margin: 4px 0;
+        }
+        .step-card:last-child .step-vline { display: none; }
+
+        .step-body {
+            flex: 1;
+            padding: 6px 0 32px 20px;
+        }
+        .step-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .step-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--blanc);
+        }
+        .badge {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+        .badge-required {
+            background: rgba(232,33,43,0.15);
+            color: #FF6B6B;
+            border: 1px solid rgba(232,33,43,0.4);
+        }
+        .badge-optional {
+            background: rgba(23,162,184,0.15);
+            color: #5BC8D8;
+            border: 1px solid rgba(23,162,184,0.4);
+        }
+        .step-desc {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(244,246,250,0.65);
+            line-height: 1.7;
+        }
+        .step-desc strong { color: var(--blanc); font-weight: 600; }
+
+        /* ─── LIENS DE TÉLÉCHARGEMENT ─── */
+        .link-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .link-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            border-radius: 5px;
+            background: rgba(0,63,138,0.12);
+            border: 1px solid rgba(0,63,138,0.35);
+            color: #7DB3FF;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .link-chip:hover {
+            background: rgba(0,63,138,0.3);
+            border-color: rgba(0,100,200,0.6);
+            color: #A8CAFF;
+            transform: translateY(-1px);
+        }
+        .link-chip i { font-size: 0.75em; opacity: 0.8; }
+
+        /* ─── CHEMIN DE FICHIER ─── */
+        .path-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(245,197,24,0.3);
+            border-left: 3px solid var(--or);
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: var(--or);
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        .path-box i { opacity: 0.6; font-size: 0.8em; }
+
+        /* ─── BLOC CODE ─── */
+        .code-wrap {
+            position: relative;
+            margin-top: 14px;
+        }
+        .code-block {
+            background: #0D1117;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 0 0 8px 8px;
+            padding: 18px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: #7FFFD4;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            display: block;
+        }
+        .code-block.code-del {
+            color: #FF6B6B;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: #161B22;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px 8px 0 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gris);
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(0,63,138,0.3);
+            border: 1px solid rgba(0,63,138,0.5);
+            border-radius: 4px;
+            color: #7DB3FF;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: rgba(0,63,138,0.5);
+            color: #A8CAFF;
+        }
+        .btn-copy.copied {
+            background: rgba(40,199,111,0.15);
+            border-color: rgba(40,199,111,0.4);
+            color: var(--vert);
+        }
+
+        /* ─── BOUTON SECONDAIRE ─── */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+            padding: 10px 22px;
+            background: rgba(23,162,184,0.1);
+            border: 1px solid rgba(23,162,184,0.35);
+            border-radius: 5px;
+            color: #5BC8D8;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            background: rgba(23,162,184,0.2);
+            border-color: rgba(23,162,184,0.6);
+            color: #7DDEE9;
+            transform: translateY(-1px);
+        }
+
+        /* ─── CARTE D'ALERTE ─── */
+        .alert-card {
+            margin-top: 14px;
+            padding: 16px 20px;
+            background: rgba(245,197,24,0.05);
+            border: 1px solid rgba(245,197,24,0.25);
+            border-left: 3px solid var(--or);
+            border-radius: 6px;
+            font-size: 0.88rem;
+            color: rgba(244,246,250,0.75);
+        }
+
+        /* ─── BOUTON ALERTE ─── */
+        .btn-alert {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+            padding: 10px 22px;
+            background: rgba(245,197,24,0.1);
+            border: 1px solid rgba(245,197,24,0.35);
+            border-radius: 5px;
+            color: var(--or);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-alert:hover {
+            background: rgba(245,197,24,0.18);
+            border-color: rgba(245,197,24,0.6);
+        }
+
+        /* ─── CARTE FINALE ─── */
+        .final-card {
+            margin-top: 14px;
+            padding: 20px 24px;
+            background: rgba(40,199,111,0.05);
+            border: 1px solid rgba(40,199,111,0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: rgba(244,246,250,0.7);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .final-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .final-card strong {
+            display: block;
+            color: var(--vert);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer-wrap {
+            border-top: 1px solid var(--bordure);
+            padding: 48px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-logo {
+            height: 52px;
+            width: auto;
+            filter: drop-shadow(0 0 12px rgba(0,63,138,0.5)) brightness(1.1);
+        }
+        .footer-brand {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+        }
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: rgba(88,101,242,0.15);
+            border: 1px solid rgba(88,101,242,0.4);
+            border-radius: 6px;
+            color: #A5ABFF;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .btn-discord:hover {
+            background: rgba(88,101,242,0.28);
+            border-color: rgba(88,101,242,0.7);
+            color: #C5CAFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(88,101,242,0.25);
+        }
+        .footer-version {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.2);
+            text-transform: uppercase;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        /* ─── MODAL ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+        .modal-overlay.open { display: block; }
+        .modal-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--fond2);
+            border: 1px solid rgba(245,197,24,0.25);
+            border-top: 3px solid var(--or);
+            border-radius: 12px;
+            padding: 36px;
+            position: relative;
+            animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 20px;
+            background: none;
+            border: none;
+            color: var(--gris);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover { color: var(--blanc); }
+        .modal-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--or);
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--bordure);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .problem-block {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--bordure);
+        }
+        .problem-block:last-of-type { border-bottom: none; }
+        .problem-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--rouge);
+            margin-bottom: 10px;
+        }
+        .problem-block p {
+            font-size: 0.88rem;
+            color: rgba(244,246,250,0.7);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+        .problem-block p strong { color: var(--blanc); }
+        .problem-img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--bordure);
+            margin: 12px 0;
+        }
+
+        /* ─── TOAST ─── */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 1000;
+            background: var(--fond3);
+            border: 1px solid rgba(40,199,111,0.4);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--vert);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 600px) {
+            .topbar { padding: 0 16px; }
+            .stats-bar { flex-direction: column; }
+            .stat-item { border-right: none; border-bottom: 1px solid var(--bordure); }
+            .stat-item:last-child { border-bottom: none; }
+            .step-timeline { width: 36px; }
+            .step-body { padding-left: 14px; }
+        }
+    </style>
 </head>
 <body>
 
 <!-- Barre de navigation -->
 <nav class="topbar">
-  <a class="topbar-brand" href="#">
-    <span class="topbar-brand-dot"></span>
-    Skotaz Modding
-  </a>
-  <span class="topbar-badge">EUP Secours Français</span>
+    <a class="topbar-brand" href="#">
+        <span class="topbar-brand-dot"></span>
+        Skotaz Modding
+    </a>
+    <span class="topbar-badge">EUP Secours Français</span>
 </nav>
 
 <!-- Hero -->
 <header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-noise"></div>
-  <div class="hero-stripe top"><span></span><span></span><span></span></div>
-  <div class="hero-stripe bottom"><span></span><span></span><span></span></div>
+    <div class="hero-bg"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-stripe top"><span></span><span></span><span></span></div>
+    <div class="hero-stripe bottom"><span></span><span></span><span></span></div>
 
-  <div class="hero-content">
-    <p class="hero-eyebrow">Guide d'installation</p>
-    <h1 class="hero-title">Pack EUP<br><em>Secours Français</em></h1>
-    <p class="hero-subtitle">Tenues d'intervention des services français pour GTA V — LSPDFR</p>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Guide d'installation</p>
+        <h1 class="hero-title">Pack EUP<br><em>Secours Français</em></h1>
+        <p class="hero-subtitle">Tenues d'intervention des services français pour GTA V — LSPDFR</p>
 
-    <a id="downloadMain" href="#" target="_blank" class="btn-hero">
-      <i class="fas fa-cloud-download-alt"></i>
-      <span>
-        Télécharger le pack
-        <span class="btn-hero-meta">Pack EUP Secours Français - V<span id="packVersionInline">2.8</span></span>
-      </span>
-    </a>
+        <a href="https://drive.google.com/file/d/1w9Mgd3C5oxlwSN6SHfMPbLPylIjYKRzR/view?usp=sharing"
+           target="_blank" class="btn-hero">
+            <i class="fas fa-cloud-download-alt"></i>
+            <span>
+                Télécharger le pack
+                <span class="btn-hero-meta">Pack EUP Secours Français - V2.8</span>
+            </span>
+        </a>
 
-    <br><br>
+        <br><br>
 
-    <div class="stats-bar">
-      <div class="stat-item">
-        <span class="stat-value" id="packVersion">2.8</span>
-        <span class="stat-label">Version stable</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value">4</span>
-        <span class="stat-label">DLC packs</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value">LSPDFR</span>
-        <span class="stat-label">Compatible</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value">13</span>
-        <span class="stat-label">Secours français</span>
-      </div>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value">2.8</span>
+                <span class="stat-label">Version stable</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">4</span>
+                <span class="stat-label">DLC packs</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">LSPDFR</span>
+                <span class="stat-label">Compatible</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">13</span>
+                <span class="stat-label">Secours français</span>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 
 <!-- Contenu principal -->
 <main class="main-wrap">
 
-  <div class="section-header">
-    <span class="section-title">Procédure d'installation</span>
-    <div class="section-line"></div>
-  </div>
-
-  <!-- Alert Jeu Clean -->
-  <div class="alert-card" style="margin-bottom: 24px;">
-     Pour résoudre tout problème et éviter les conflits d'installation, il est fortement conseillé de partir d'un jeu propre.
-  </div>
-
-  <div class="steps-list">
-
-    <!-- Étape 1 : Installation EUP de base -->
-    <div class="step-card">
-      <div class="step-timeline">
-        <div class="step-num active">01</div>
-        <div class="step-vline"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-head">
-          <span class="step-name">Installation LSPDFR</span>
-          <span class="badge badge-required">Obligatoire</span>
-        </div>
-        <p class="step-desc">
-          Installe <strong>LSPDFR</strong>.
-        </p>
-        <div class="link-grid">
-          <a class="link-chip" href="https://www.lcpdfr.com/downloads/gta5mods/g17media/7792-lspd-first-response/" target="_blank">
-            <i class="fas fa-play"></i> LSPDFR
-          </a>
-        </div>
-      </div>
+    <div class="section-header">
+        <span class="section-title">Procédure d'installation</span>
+        <div class="section-line"></div>
     </div>
 
-    <!-- Étape 2 : Prérequis Anti-Crash -->
-    <div class="step-card">
-      <div class="step-timeline">
-        <div class="step-num active">02</div>
-        <div class="step-vline"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-head">
-          <span class="step-name">Prérequis anti-crash</span>
-          <span class="badge badge-required">Obligatoire</span>
-        </div>
-        <p class="step-desc">Télécharge et installe ces 5 correctifs indispensables pour stabiliser GTA V avec des mods :</p>
-        <div class="link-grid">
-          <a class="link-chip" href="https://www.gta5-mods.com/fr/misc/gta-5-gameconfig-300-cars" target="_blank">
-            <i class="fas fa-cog"></i> Gameconfig
-          </a>
-          <a class="link-chip" href="https://www.gta5-mods.com/scripts/pedprop-limit-adjuster" target="_blank">
-            <i class="fas fa-wrench"></i> PedProp Limit
-          </a>
-          <a class="link-chip" href="https://www.gta5-mods.com/fr/tools/heapadjuster" target="_blank">
-            <i class="fas fa-memory"></i> HeapAdjuster
-          </a>
-          <a class="link-chip" href="https://www.gta5-mods.com/fr/tools/packfile-limit-adjuster" target="_blank">
-            <i class="fas fa-box"></i> Packfile Limit
-          </a>
-          <a class="link-chip" href="https://www.gta5-mods.com/tools/resource-adjuster" target="_blank">
-            <i class="fas fa-sliders-h"></i> Resource Adjuster
-          </a>
-        </div>
-      </div>
+    <!-- Alert Jeu Clean -->
+    <div class="alert-card" style="margin-bottom: 24px;">
+         Pour résoudre tout problème et éviter les conflits d'installation, il est fortement conseillé de partir d'un jeu propre.
     </div>
 
-    <!-- Étape 3 : Copie du dlclist.xml -->
-    <div class="step-card">
-      <div class="step-timeline">
-        <div class="step-num active">03</div>
-        <div class="step-vline"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-head">
-          <span class="step-name">Copie du dlclist.xml</span>
-        </div>
-        <p class="step-desc">
-          Prends le fichier <code>dlclist.xml</code> officiel situé dans ton répertoire d'origine :
-        </p>
-        <div class="path-box">
-          <i class="fas fa-folder-open"></i>
-          gtav &rsaquo; update &rsaquo; update.rpf &rsaquo; common &rsaquo; data
-        </div>
-        <p class="step-desc" style="margin-top: 10px;">
-          Copie-le ensuite vers ton dossier <strong>mods</strong> :
-        </p>
-        <div class="path-box">
-          <i class="fas fa-folder-open"></i>
-          gtav &rsaquo; mods &rsaquo; update &rsaquo; update.rpf &rsaquo; common &rsaquo; data
-        </div>
-      </div>
-    </div>
+    <div class="steps-list">
 
-    <!-- Étape 4 : Modification du dlclist.xml -->
-    <div class="step-card">
-      <div class="step-timeline">
-        <div class="step-num active">04</div>
-        <div class="step-vline"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-head">
-          <span class="step-name">Configuration du dlclist.xml</span>
+        <!-- Étape 1 : Installation EUP de base -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">01</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation LSPDFR</span>
+                    <span class="badge badge-required">Obligatoire</span>
+                </div>
+                <p class="step-desc">
+                    Installe <strong>LSPDFR</strong>.
+                </p>
+                <div class="link-grid">
+                    <a class="link-chip" href="https://www.lcpdfr.com/downloads/gta5mods/g17media/7792-lspd-first-response/" target="_blank">
+                        <i class="fas fa-play"></i> LSPDFR
+                    </a>
+                </div>
+            </div>
         </div>
-        <p class="step-desc">
-          Ouvre ton <code>dlclist.xml</code> (dans le dossier mods).<br>
-          <strong>1. Supprime absolument ces lignes :</strong>
-        </p>
-        <div class="code-wrap">
-          <div class="code-header">Lignes à supprimer</div>
-          <code class="code-block code-del">&lt;Item&gt;dlcpacks:/mp2026_01/&lt;/Item&gt;
+
+        <!-- Étape 2 : Prérequis Anti-Crash -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">02</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Prérequis anti-crash</span>
+                    <span class="badge badge-required">Obligatoire</span>
+                </div>
+                <p class="step-desc">Télécharge et installe ces 5 correctifs indispensables pour stabiliser GTA V avec des mods :</p>
+                <div class="link-grid">
+                    <a class="link-chip" href="https://www.gta5-mods.com/fr/misc/gta-5-gameconfig-300-cars" target="_blank">
+                        <i class="fas fa-cog"></i> Gameconfig
+                    </a>
+                    <a class="link-chip" href="https://www.gta5-mods.com/scripts/pedprop-limit-adjuster" target="_blank">
+                        <i class="fas fa-wrench"></i> PedProp Limit
+                    </a>
+                    <a class="link-chip" href="https://www.gta5-mods.com/fr/tools/heapadjuster" target="_blank">
+                        <i class="fas fa-memory"></i> HeapAdjuster
+                    </a>
+                    <a class="link-chip" href="https://www.gta5-mods.com/fr/tools/packfile-limit-adjuster" target="_blank">
+                        <i class="fas fa-box"></i> Packfile Limit
+                    </a>
+                    <a class="link-chip" href="https://www.gta5-mods.com/tools/resource-adjuster" target="_blank">
+                        <i class="fas fa-sliders-h"></i> Resource Adjuster
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 3 : Copie du dlclist.xml -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">03</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Copie du dlclist.xml</span>
+                </div>
+                <p class="step-desc">
+                    Prends le fichier <code>dlclist.xml</code> officiel situé dans ton répertoire d'origine :
+                </p>
+                <div class="path-box">
+                    <i class="fas fa-folder-open"></i>
+                    gtav &rsaquo; update &rsaquo; update.rpf &rsaquo; common &rsaquo; data
+                </div>
+                <p class="step-desc" style="margin-top: 10px;">
+                    Copie-le ensuite vers ton dossier <strong>mods</strong> :
+                </p>
+                <div class="path-box">
+                    <i class="fas fa-folder-open"></i>
+                    gtav &rsaquo; mods &rsaquo; update &rsaquo; update.rpf &rsaquo; common &rsaquo; data
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 4 : Modification du dlclist.xml -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">04</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Configuration du dlclist.xml</span>
+                </div>
+                <p class="step-desc">
+                    Ouvre ton <code>dlclist.xml</code> (dans le dossier mods).<br>
+                    <strong>1. Supprime absolument ces lignes :</strong>
+                </p>
+                <div class="code-wrap">
+                    <div class="code-header">Lignes à supprimer</div>
+                    <code class="code-block code-del">&lt;Item&gt;dlcpacks:/mp2026_01/&lt;/Item&gt;
 &lt;Item&gt;dlcpacks:/mp2026_01_g9ec/&lt;/Item&gt;
 &lt;Item&gt;dlcpacks:/patch2026_01/&lt;/Item&gt;</code>
-        </div>
-        <p class="step-desc" style="margin-top: 14px;">
-          <strong>2. Ajoute ces nouvelles lignes :</strong>
-        </p>
-        <div class="code-wrap">
-          <div class="code-header">
-            Lignes à ajouter
-            <button class="btn-copy" id="copyBtn" onclick="copyDlcList()">
-              <i class="fas fa-copy"></i> Copier
-            </button>
-          </div>
-          <code class="code-block" id="dlcCode">&lt;Item&gt;dlcpacks:/eup/&lt;/Item&gt;
+                </div>
+                <p class="step-desc" style="margin-top: 14px;">
+                    <strong>2. Ajoute ces nouvelles lignes :</strong>
+                </p>
+                <div class="code-wrap">
+                    <div class="code-header">
+                        Lignes à ajouter
+                        <button class="btn-copy" id="copyBtn" onclick="copyDlcList()">
+                            <i class="fas fa-copy"></i> Copier
+                        </button>
+                    </div>
+                    <code class="code-block" id="dlcCode">&lt;Item&gt;dlcpacks:/eup/&lt;/Item&gt;
 &lt;Item&gt;dlcpacks:/sup/&lt;/Item&gt;
 &lt;Item&gt;dlcpacks:/packfreupsm/&lt;/Item&gt;
 &lt;Item&gt;dlcpacks:/packfreupsm2/&lt;/Item&gt;</code>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Étape 5 : Pack EUP Secours Français -->
-    <div class="step-card">
-      <div class="step-timeline">
-        <div class="step-num active">05</div>
-        <div class="step-vline"></div>
-      </div>
-      <div class="step-body">
-        <div class="step-head">
-          <span class="step-name">Installation du Pack EUP</span>
-          <span class="badge badge-required">Obligatoire</span>
+        <!-- Étape 5 : Pack EUP Secours Français -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">05</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation du Pack EUP</span>
+                    <span class="badge badge-required">Obligatoire</span>
+                </div>
+                <p class="step-desc">
+                    Télécharge la dernière version <strong>Pack EUP Secours Français - V2.8</strong> et remplace l'intégralité du contenu de ton jeu par celui du pack.
+                </p>
+                <a href="https://drive.google.com/file/d/1w9Mgd3C5oxlwSN6SHfMPbLPylIjYKRzR/view?usp=sharing" target="_blank" class="btn-secondary" style="background:rgba(232,33,43,0.1); border-color:rgba(232,33,43,0.35); color:#FF6B6B;">
+                    <i class="fas fa-download"></i> Télécharger Pack V2.8
+                </a>
+            </div>
         </div>
-        <p class="step-desc">
-          Télécharge la dernière version <strong>Pack EUP Secours Français - V<span id="packVersionInline2">2.8</span></strong> et remplace l'intégralité du contenu de ton jeu par celui du pack.
-        </p>
-        <a id="downloadSecondary" href="#" target="_blank" class="btn-secondary" style="background:rgba(232,33,43,0.1); border-color:rgba(232,33,43,0.35); color:#FF6B6B;">
-          <i class="fas fa-download"></i> Télécharger Pack V<span id="packVersionBtn">2.8</span>
-        </a>
-      </div>
-    </div>
 
-    <!-- remaining content unchanged... -->
+        <!-- Étape 6 : Preset LSPDFR -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num" style="border-color:rgba(23,162,184,0.4);color:#5BC8D8;">06</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Preset LSPDFR</span>
+                    <span class="badge badge-optional">Optionnel</span>
+                </div>
+                <p class="step-desc">
+                    Glisse les fichiers <strong>agency.xml</strong> et <strong>outfits.xml</strong> dans le dossier
+                    <strong>GTAV &rsaquo; lspdfr &rsaquo; data</strong>.
+                </p>
+                <a href="https://discord.com/channels/1422838227777093765/1517807765974679644"
+                   target="_blank" class="btn-secondary">
+                    <i class="fas fa-file-download"></i> Télécharger le preset
+                </a>
+            </div>
+        </div>
 
-  </div><!-- /steps-list -->
+        <!-- Étape 7 : Policing Redefined -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num" style="border-color:rgba(23,162,184,0.4);color:#5BC8D8;">07</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Preset Policing Redefined</span>
+                    <span class="badge badge-optional">Optionnel</span>
+                </div>
+                <p class="step-desc">
+                    Glisse le dossier <strong>plugins</strong> directement à la racine de ton GTA V.
+                </p>
+                <a href="https://discord.com/channels/1422838227777093765/1517806026403872908"
+                   target="_blank" class="btn-secondary">
+                    <i class="fas fa-file-download"></i> Télécharger le preset
+                </a>
+            </div>
+        </div>
+
+        <!-- Étape 8 : Ultimate Backup -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num" style="border-color:rgba(23,162,184,0.4);color:#5BC8D8;">08</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Preset Ultimate Backup + Stop The Peds</span>
+                    <span class="badge badge-optional">Optionnel</span>
+                </div>
+                <p class="step-desc">
+                    Glisse le dossier <strong>plugins</strong> directement à la racine de ton GTA V.
+                </p>
+                <a href="https://discord.com/channels/1422838227777093765/1456785679177613568/1456788491701719060"
+                   target="_blank" class="btn-secondary">
+                    <i class="fas fa-file-download"></i> Télécharger le preset
+                </a>
+            </div>
+        </div>
+
+        <!-- Étape 9 : Vidéo -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num" style="border-color:rgba(23,162,184,0.4);color:#5BC8D8;">09</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Vidéo tutoriel</span>
+                    <span class="badge badge-optional">Optionnel</span>
+                </div>
+                <p class="step-desc">Un tutoriel vidéo complet est disponible si tu préfères un guide visuel pas-à-pas.</p>
+                <a href="https://www.youtube.com/watch?v=kPlUUZJNmSQ" target="_blank" class="btn-secondary">
+                    <i class="fab fa-youtube"></i> Regarder sur YouTube
+                </a>
+            </div>
+        </div>
+
+        <!-- Problèmes connus -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num warn">!</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Problèmes connus</span>
+                </div>
+                <div class="alert-card">
+                    Tu rencontres un bug ou un problème visuel ? Consulte les solutions répertoriées avant de demander de l'aide.
+                </div>
+                <button class="btn-alert" onclick="openModal()">
+                    <i class="fas fa-exclamation-triangle"></i> Voir les solutions
+                </button>
+            </div>
+        </div>
+
+        <!-- Terminé -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num done"><i class="fas fa-check" style="font-size:0.75em;"></i></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation terminée</span>
+                </div>
+                <div class="final-card">
+                    <span class="final-icon">🚨</span>
+                    <div>
+                        <strong>Prêt à jouer</strong>
+                        Lance GTA V et profite des tenues des secours français. Bon jeu !
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /steps-list -->
 
 </main>
 
 <!-- Footer -->
 <footer class="footer-wrap">
-  <img src="https://i.ibb.co/6RwKXGjK/logo2.png" alt="Logo Skotaz Modding" class="footer-logo">
-  <p class="footer-brand">Au nom de l'équipe Skotaz Modding</p>
-  <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord">
-    <i class="fab fa-discord"></i> Rejoindre le Discord
-  </a>
-  <p class="footer-version">Version <span id="footerVersion">2.8</span> Stable</p>
+    <img src="https://i.ibb.co/6RwKXGjK/logo2.png" alt="Logo Skotaz Modding" class="footer-logo">
+    <p class="footer-brand">Au nom de l'équipe Skotaz Modding</p>
+    <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord">
+        <i class="fab fa-discord"></i> Rejoindre le Discord
+    </a>
+    <p class="footer-version">Version 2.8 Stable</p>
 </footer>
 
 <!-- Modal Problèmes -->
 <div class="modal-overlay" id="problemModal" onclick="closeModalOutside(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-    <h2 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Problèmes connus</h2>
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <h2 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Problèmes connus</h2>
 
-    <div class="problem-block">
-      <p class="problem-label">Problème 01 — Cheveux bugués</p>
-      <p>Si les cheveux s'affichent de manière incorrecte (voir image), c'est que <strong>PedProp Limit Adjuster</strong> n'est pas installé.</p>
-      <img src="https://i.ibb.co/PZNyWv2h/image-2025-12-31-095827205.png" alt="Erreur cheveux" class="problem-img">
-      <a class="link-chip" href="https://www.gta5-mods.com/scripts/pedprop-limit-adjuster" target="_blank" style="background:rgba(40,199,111,0.1);border-color:rgba(40,199,111,0.4);color:#5DE89A;">
-        <i class="fas fa-wrench"></i> Télécharger PedProp Limit
-      </a>
-    </div>
+        <div class="problem-block">
+            <p class="problem-label">Problème 01 — Cheveux bugués</p>
+            <p>Si les cheveux s'affichent de manière incorrecte (voir image), c'est que <strong>PedProp Limit Adjuster</strong> n'est pas installé.</p>
+            <img src="https://i.ibb.co/PZNyWv2h/image-2025-12-31-095827205.png" alt="Erreur cheveux" class="problem-img">
+            <a class="link-chip" href="https://www.gta5-mods.com/scripts/pedprop-limit-adjuster" target="_blank" style="background:rgba(40,199,111,0.1);border-color:rgba(40,199,111,0.4);color:#5DE89A;">
+                <i class="fas fa-wrench"></i> Télécharger PedProp Limit
+            </a>
+        </div>
 
-    <div class="problem-block">
-      <p class="problem-label">Problème 02 — Pantalon bugué</p>
-      <p>Si le pantalon s'affiche incorrectement, sélectionne d'abord une des premières tenues de la rubrique pour débuguer l'affichage.</p>
-      <img src="https://i.ibb.co/mCCTjW0h/image.png" alt="Erreur pantalon" class="problem-img">
-    </div>
+        <div class="problem-block">
+            <p class="problem-label">Problème 02 — Pantalon bugué</p>
+            <p>Si le pantalon s'affiche incorrectement, sélectionne d'abord une des premières tenues de la rubrique pour débuguer l'affichage.</p>
+            <img src="https://i.ibb.co/mCCTjW0h/image.png" alt="Erreur pantalon" class="problem-img">
+        </div>
 
-    <div class="problem-block">
-      <p class="problem-label">Autre problème</p>
-      <p>Si ton problème ne correspond à aucun des cas ci-dessus, rejoins le Discord pour obtenir de l'aide de la communauté.</p>
-      <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord" style="margin-top:8px;">
-        <i class="fab fa-discord"></i> Demander de l'aide
-      </a>
+        <div class="problem-block">
+            <p class="problem-label">Autre problème</p>
+            <p>Si ton problème ne correspond à aucun des cas ci-dessus, rejoins le Discord pour obtenir de l'aide de la communauté.</p>
+            <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord" style="margin-top:8px;">
+                <i class="fab fa-discord"></i> Demander de l'aide
+            </a>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Toast -->
 <div class="toast" id="toast">
-  <i class="fas fa-check-circle"></i> Copié dans le presse-papiers
+    <i class="fas fa-check-circle"></i> Copié dans le presse-papiers
 </div>
 
 <script>
-  // Configuration centralisée — modifiez ici la version et l'URL de téléchargement
-  const PACK_CONFIG = {
-    version: "2.8",
-    downloadUrl: "https://drive.google.com/drive/folders/1rv5IRBlNW_JDrWP2VtU1KdRQloF2C8Zf?usp=drive_link"
-  };
+    function openModal() {
+        document.getElementById('problemModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('problemModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function closeModalOutside(e) {
+        if (e.target === document.getElementById('problemModal')) closeModal();
+    }
 
-  // DOM helpers to apply the config
-  function applyPackConfig() {
-    const v = PACK_CONFIG.version;
-    const url = PACK_CONFIG.downloadUrl;
-    document.getElementById('packVersion')?.replaceWith(document.getElementById('packVersion') || (function(){var s=document.createElement('span');s.id='packVersion';s.textContent=v;return s;})());
-    // set version in multiple places
-    const inlineEls = ['packVersionInline','packVersionInline2','packVersionBtn','footerVersion'];
-    inlineEls.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = v; });
-    // set download links
-    const m = document.getElementById('downloadMain'); if (m) m.href = url;
-    const s = document.getElementById('downloadSecondary'); if (s) s.href = url;
-  }
+    function copyDlcList() {
+        const code = document.getElementById('dlcCode').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copié';
+            showToast();
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copier';
+            }, 2500);
+        });
+    }
 
-  function openModal() { document.getElementById('problemModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeModal() { document.getElementById('problemModal').classList.remove('open'); document.body.style.overflow = ''; }
-  function closeModalOutside(e) { if (e.target === document.getElementById('problemModal')) closeModal(); }
+    function showToast() {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
 
-  function copyDlcList() {
-    const code = document.getElementById('dlcCode').innerText;
-    navigator.clipboard.writeText(code).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.classList.add('copied');
-      btn.innerHTML = '<i class="fas fa-check"></i> Copié';
-      showToast();
-      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<i class="fas fa-copy"></i> Copier'; }, 2500);
+    // Stagger animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.step-card').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
     });
-  }
-
-  function showToast() { const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
-
-  // Stagger animation on scroll
-  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; }); }, { threshold: 0.1 });
-  document.querySelectorAll('.step-card').forEach(el => { el.style.animationPlayState = 'paused'; observer.observe(el); });
-
-  // Apply config on load
-  applyPackConfig();
 </script>
 </body>
 </html>
