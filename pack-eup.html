@@ -813,12 +813,11 @@
         <h1 class="hero-title">Pack EUP<br><em>Secours Français</em></h1>
         <p class="hero-subtitle">Tenues d'intervention des services français pour GTA V — LSPDFR</p>
 
-        <a href="https://drive.google.com/file/d/1w9Mgd3C5oxlwSN6SHfMPbLPylIjYKRzR/view?usp=sharing"
-           target="_blank" class="btn-hero">
+        <a href="#" target="_blank" class="btn-hero var-lien">
             <i class="fas fa-cloud-download-alt"></i>
             <span>
                 Télécharger le pack
-                <span class="btn-hero-meta">Pack EUP Secours Français - V2.8</span>
+                <span class="btn-hero-meta">Pack EUP Secours Français - V<span class="var-version"></span></span>
             </span>
         </a>
 
@@ -826,7 +825,7 @@
 
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="stat-value">2.8</span>
+                <span class="stat-value"><span class="var-version"></span></span>
                 <span class="stat-label">Version stable</span>
             </div>
             <div class="stat-item">
@@ -991,10 +990,10 @@
                     <span class="badge badge-required">Obligatoire</span>
                 </div>
                 <p class="step-desc">
-                    Télécharge la dernière version <strong>Pack EUP Secours Français - V2.8</strong> et remplace l'intégralité du contenu de ton jeu par celui du pack.
+                    Télécharge la dernière version <strong>Pack EUP Secours Français - V<span class="var-version"></span></strong> et remplace l'intégralité du contenu de ton jeu par celui du pack.
                 </p>
-                <a href="https://drive.google.com/file/d/1w9Mgd3C5oxlwSN6SHfMPbLPylIjYKRzR/view?usp=sharing" target="_blank" class="btn-secondary" style="background:rgba(232,33,43,0.1); border-color:rgba(232,33,43,0.35); color:#FF6B6B;">
-                    <i class="fas fa-download"></i> Télécharger Pack V2.8
+                <a href="#" target="_blank" class="btn-secondary var-lien" style="background:rgba(232,33,43,0.1); border-color:rgba(232,33,43,0.35); color:#FF6B6B;">
+                    <i class="fas fa-download"></i> Télécharger Pack V<span class="var-version"></span>
                 </a>
             </div>
         </div>
@@ -1130,7 +1129,7 @@
     <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord">
         <i class="fab fa-discord"></i> Rejoindre le Discord
     </a>
-    <p class="footer-version">Version 2.8 Stable</p>
+    <p class="footer-version">Version <span class="var-version"></span> Stable</p>
     <div style="max-width:900px;margin:0 auto;">© Skotaz Modding — Tous droits réservés</div>
 </footer>
 
@@ -1211,6 +1210,16 @@
         el.style.animationPlayState = 'paused';
         observer.observe(el);
     });
+
+
+  const version = "2.8";
+  const lien = "https://drive.google.com/file/d/1w9Mgd3C5oxlwSN6SHfMPbLPylIjYKRzR/view?usp=sharing";
+
+
+  document.querySelectorAll('.var-version').forEach(el => el.textContent = version);
+document.querySelectorAll('.var-lien').forEach(el => {
+    if (el.tagName === 'A') el.href = lien;
+  });
 </script>
 </body>
 </html>
