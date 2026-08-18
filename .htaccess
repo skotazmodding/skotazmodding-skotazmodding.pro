@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Use accueil.html as directory index
+DirectoryIndex accueil.html index.html
+
+# Clean URLs -> map to the html files
+RewriteRule ^accueil/?$ /accueil.html [L]
+RewriteRule ^pack-eup/?$ /pack-eup.html [L]
+RewriteRule ^PS6G/?$ /PS6G.html [L]
+
+# If a request is for a file that exists, serve it (default behavior)
+# Otherwise, do nothing (avoid forcing SPA fallback)
