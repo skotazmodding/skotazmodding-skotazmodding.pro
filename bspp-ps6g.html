@@ -46,141 +46,172 @@
         a, button { cursor: pointer; }
 
         /* ════════════════════════════════════════
-           TOPBAR / HERO — STYLE ACCUEIL & PACK EUP
+           TOPBAR
         ════════════════════════════════════════ */
         .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(13,17,23,0.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--bordure);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            height: 64px;
+            padding: 0 32px;
+            background: rgba(8,12,16,0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bordure);
         }
-        .topbar-brand {
+        .topbar-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+        }
+        .topbar-brand {
             font-family: 'Barlow Condensed', sans-serif;
             font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--blanc);
+            color: rgba(255,255,255,0.45);
             text-decoration: none;
         }
-        .topbar-brand-dot {
-            width: 8px; height: 8px;
-            background: var(--rouge);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--rouge);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 8px var(--rouge); }
-            50% { box-shadow: 0 0 16px var(--rouge), 0 0 32px rgba(232,33,43,0.4); }
+        .topbar-sep { color: var(--bordure); }
+        .topbar-page {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--rouge-vif);
         }
         .topbar-pill {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.62rem;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 4px;
-            background: rgba(0,63,138,0.25);
-            color: #6FA8FF;
-            border: 1px solid rgba(0,63,138,0.5);
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(217,31,42,0.15);
+            color: var(--rouge-vif);
+            border: 1px solid rgba(217,31,42,0.35);
+            animation: blink 2.5s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%,100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
+        /* ════════════════════════════════════════
+           HERO — IMAGE PLEIN ÉCRAN
+        ════════════════════════════════════════ */
         .hero {
             position: relative;
-            min-height: 420px;
+            height: 100vh;
+            min-height: 560px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end;
             overflow: hidden;
-            padding: 60px 20px;
         }
-        .hero-bg {
+        .hero-img {
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(to bottom, rgba(13,17,23,0.55) 0%, rgba(13,17,23,0.92) 100%),
-                url('https://i.postimg.cc/jx2Hpnkt/GTA5-2026-05-31-20-06.png');
+            background-image: url('https://i.postimg.cc/jx2Hpnkt/GTA5-2026-05-31-20-06.png');
             background-size: cover;
-            background-position: center 30%;
-            filter: saturate(0.6);
+            background-position: center 60%;
+            transform: scale(1.04);
+            animation: heroZoom 12s ease-out forwards;
         }
-        .hero-noise {
+        @keyframes heroZoom {
+            from { transform: scale(1.04); }
+            to   { transform: scale(1.00); }
+        }
+        /* Dégradés */
+        .hero-grad-bottom {
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            opacity: 0.4;
-            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                rgba(8,12,16,0.2) 0%,
+                rgba(8,12,16,0.0) 30%,
+                rgba(8,12,16,0.7) 65%,
+                rgba(8,12,16,1.0) 100%
+            );
         }
-        .hero-stripe {
+        .hero-grad-left {
             position: absolute;
-            left: 0; right: 0;
-            height: 3px;
-            display: flex;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(8,12,16,0.75) 0%,
+                rgba(8,12,16,0.0) 55%
+            );
         }
-        .hero-stripe.top { top: 0; }
-        .hero-stripe.bottom { bottom: 0; }
-        .hero-stripe span { flex: 1; }
-        .hero-stripe span:nth-child(1) { background: #002395; }
-        .hero-stripe span:nth-child(2) { background: #EDEDED; }
-        .hero-stripe span:nth-child(3) { background: #ED2939; }
+        /* Ligne rouge gauche décorative */
+        .hero-redline {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent 0%, var(--rouge) 30%, var(--rouge) 70%, transparent 100%);
+        }
 
         .hero-content {
             position: relative;
-            text-align: center;
-            max-width: 780px;
+            padding: 0 48px 72px;
+            max-width: 680px;
         }
         .hero-eyebrow {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
             margin-bottom: 16px;
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-size: 0.72rem;
+            font-weight: 700;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--gris);
+            color: var(--rouge-vif);
+            opacity: 0;
+            animation: fadeUp 0.7s 0.3s ease forwards;
         }
-        .hero-eyebrow::before, .hero-eyebrow::after {
+        .hero-eyebrow::after {
             content: '';
-            width: 40px; height: 1px;
-            background: linear-gradient(to right, transparent, var(--gris));
+            flex: 1;
+            max-width: 60px;
+            height: 1px;
+            background: var(--rouge);
+            opacity: 0.5;
         }
-        .hero-eyebrow::after { transform: scaleX(-1); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
         .hero-title {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2.4rem, 6vw, 4.2rem);
-            font-weight: 800;
-            line-height: 1;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            line-height: 0.92;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #fff;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.5s ease forwards;
         }
         .hero-title em {
-            font-style: normal;
-            color: var(--rouge);
+            font-style: italic;
+            color: var(--rouge-vif);
             display: block;
         }
         .hero-sub {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 300;
-            color: rgba(244,246,250,0.65);
+            color: rgba(242,244,248,0.55);
+            letter-spacing: 1px;
             margin-bottom: 36px;
-            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.7s ease forwards;
         }
         .hero-tags {
             display: flex;
@@ -429,7 +460,7 @@
 
         /* Masonry columns */
         .gallery-grid {
-            columns: 3;
+            columns: 4;
             column-gap: 3px;
             padding: 0 3px;
         }
@@ -1116,10 +1147,6 @@
             .footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
             .edm-header { flex-direction: column; align-items: flex-start; }
         }
-
-        @media (max-width: 480px) {
-            .gallery-grid { columns: 1; }
-        }
     </style>
 </head>
 <body>
@@ -1135,10 +1162,10 @@
 
 <!-- ─ HERO ─ -->
 <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-noise"></div>
-    <div class="hero-stripe top"><span></span><span></span><span></span></div>
-    <div class="hero-stripe bottom"><span></span><span></span><span></span></div>
+    <div class="hero-img"></div>
+    <div class="hero-grad-bottom"></div>
+    <div class="hero-grad-left"></div>
+    <div class="hero-redline"></div>
 
     <div class="hero-content">
         <p class="hero-eyebrow">Brigade de Sapeurs-Pompiers de Paris</p>
@@ -1162,6 +1189,11 @@
                 <span class="btn-sub-text">Gratuit</span>
             </span>
         </a>
+    </div>
+
+    <div class="scroll-hint">
+        <span>Défiler</span>
+        <div class="scroll-line"></div>
     </div>
 </section>
 
