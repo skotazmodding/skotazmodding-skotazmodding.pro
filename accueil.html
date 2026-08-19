@@ -221,16 +221,22 @@
             text-transform: uppercase;
             opacity: 0.8;
         }
-        .btn-secondary { display:inline-flex; align-items:center; gap:10px; padding:12px 22px; background:rgba(23,162,184,0.1); border:1px solid rgba(23,162,184,0.35); border-radius:5px; color:#5BC8D8; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; margin:6px; }
+        .btn-secondary { display:inline-flex; align-items:center; gap:10px; padding:12px 22px; background:rgba(23,162,184,0.1); border:1px solid rgba(23,162,184,0.35); border-radius:5px; color:#5BC8D8; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; margin:0; }
         .main-wrap { max-width:980px; margin:0 auto; padding:40px 20px 80px; }
-        .cards { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
-        .card { background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); border:1px solid var(--bordure); padding:18px; border-radius:12px; width:320px; text-align:left; overflow:hidden; transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease; box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+        .cards { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; align-items:stretch; }
+        .card { background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); border:1px solid var(--bordure); padding:18px; border-radius:12px; width:320px; text-align:left; overflow:hidden; transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease; box-shadow: 0 12px 30px rgba(0,0,0,0.18); display:flex; flex-direction:column; }
         .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); box-shadow: 0 18px 40px rgba(0,0,0,0.26); }
-        .card-image { display:block; width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:14px; border:1px solid rgba(255,255,255,0.06); background:#111827; }
-        .card h3 { font-family:'Barlow Condensed',sans-serif; margin-bottom:8px; font-size:1.15rem; letter-spacing:0.5px; }
-        .card p { color: rgba(244,246,250,0.76); line-height:1.5; }
+        .card-image { display:block; width:100%; aspect-ratio:16 / 9; height:auto; object-fit:cover; border-radius:8px; margin-bottom:14px; border:1px solid rgba(255,255,255,0.06); background:#111827; }
+        .card-body { display:flex; flex-direction:column; flex:1; }
+        .card h3 { font-family:'Barlow Condensed',sans-serif; margin:0 0 8px; font-size:1.15rem; letter-spacing:0.5px; text-align:center; }
+        .card p { color: rgba(244,246,250,0.76); line-height:1.5; margin:0 0 12px; }
+        .card-badge { display:inline-flex; align-items:center; justify-content:center; width:fit-content; margin:0 auto 12px; padding:5px 12px; border-radius:4px; background:rgba(232,33,43,0.16); border:1px solid rgba(232,33,43,0.6); color:#ffb1b7; font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04); }
+        .card-link { display:none; }
+        .card { text-decoration:none; color:inherit; }
+        .card:hover { text-decoration:none; }
+        .card:focus-visible { outline: 2px solid rgba(23,162,184,0.9); outline-offset: 3px; }
         .footer-wrap { border-top:1px solid var(--bordure); padding:28px 20px; text-align:center; color:rgba(255,255,255,0.55); }
-        @media (max-width:720px) { .cards { flex-direction:column; align-items:center; } .card { width:100%; max-width:420px; } .card-image { height:220px; } }
+        @media (max-width:720px) { .cards { flex-direction:column; align-items:center; } .card { width:100%; max-width:420px; } .card-image { aspect-ratio:16 / 9; } }
     </style>
 </head>
 <body>
@@ -254,18 +260,20 @@
 
     <main class="main-wrap">
         <div class="cards">
-            <div class="card">
+            <a class="card" href="/pack-eup" aria-label="Ouvrir Pack EUP | Secours Français">
                 <img class="card-image" src="https://cdn.discordapp.com/attachments/1422838235528429580/1538590609915388085/screen.png?ex=6a8535eb&is=6a83e46b&hm=e409101fe885c75fc98dd1c1720e83d0c6d0069a4477e550c31487991036a6b4" alt="Pack EUP — Secours Français">
-                <h3>Pack EUP — Secours Français</h3>
-                <p>Guide d'installation, fichiers et téléchargement du pack EUP pour LSPDFR.</p>
-                <p style="margin-top:12px;"><a class="btn-secondary" href="/pack-eup">Accéder</a></p>
-            </div>
-            <div class="card">
+                <div class="card-body">
+                    <h3>Pack EUP | Secours Français</h3>
+                    <div class="card-badge">Gratuit</div>
+                </div>
+            </a>
+            <a class="card" href="/PS6G" aria-label="Ouvrir Renault PS6G | BSPP">
                 <img class="card-image" src="https://cdn.discordapp.com/attachments/1423992050394730578/1510931914217885829/GTA5_2026.05.31-20.06.png?ex=6a857180&is=6a842000&hm=f9e8b637b07d7001c84e4908ff7df311783b2df4d10b7ad1f3060851f03d0737" alt="PS6G — BSPP">
-                <h3>PS6G — BSPP</h3>
-                <p>Véhicule Premiers Secours 6e génération - preset EDM, guide d'installation.</p>
-                <p style="margin-top:12px;"><a class="btn-secondary" href="/PS6G">Accéder</a></p>
-            </div>
+                <div class="card-body">
+                    <h3>Renault D12 PS6G | BSPP</h3>
+                    <div class="card-badge">Gratuit</div>
+                </div>
+            </a>
         </div>
     </main>
 
