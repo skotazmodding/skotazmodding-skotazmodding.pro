@@ -1,247 +1,111 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <link rel="icon" href="/favicon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PS6G — Premiers Secours 6G · BSPP · Skotaz Modding</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --rouge: #E8212B;
-            --bleu: #003F8A;
-            --bleu-clair: #1A6FC4;
-            --or: #F5C518;
-            --blanc: #F4F6FA;
-            --gris-clair: #E8EBF0;
-            --gris: #8A95A3;
-            --fond: #0D1117;
-            --fond2: #141B24;
-            --fond3: #1C2535;
-            --bordure: rgba(255,255,255,0.07);
-            --vert: #28C76F;
-            --cyan: #17A2B8;
+ (file truncated for brevity)
+        .edm-section {
+            padding: 80px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid var(--bordure);
         }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html {
-            scrollbar-width: thin;
-            scrollbar-color: var(--bleu) var(--fond2);
+        .edm-container {
+            background: var(--fond2);
+            border: 1px solid var(--bordure);
+            border-radius: 12px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
         }
-        html::-webkit-scrollbar { width: 6px; }
-        html::-webkit-scrollbar-track { background: var(--fond2); }
-        html::-webkit-scrollbar-thumb { background: var(--bleu); border-radius: 3px; }
-
-        body {
-            font-family: 'Barlow', sans-serif;
-            background-color: var(--fond);
-            color: var(--blanc);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
+        .edm-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--rouge-vif), var(--or));
         }
-
-        * { cursor: default; }
-        a, button { cursor: pointer; }
-
-        .topbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 200;
-            background: rgba(13,17,23,0.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--bordure);
+        .edm-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            height: 64px;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
         }
-        .topbar-brand {
+        .edm-title-wrap {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+        }
+        .edm-badge-v4 {
             font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700;
-            font-size: 1.15rem;
+            font-size: 0.75rem;
+            font-weight: 800;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--blanc);
-            text-decoration: none;
-        }
-        .topbar-brand-dot {
-            width: 8px; height: 8px;
-            background: var(--rouge);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--rouge);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 8px var(--rouge); }
-            50% { box-shadow: 0 0 16px var(--rouge), 0 0 32px rgba(232,33,43,0.4); }
-        }
-        .topbar-badge {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 4px;
-            background: rgba(0,63,138,0.25);
-            color: #6FA8FF;
-            border: 1px solid rgba(0,63,138,0.5);
+            background: rgba(245,197,24,0.15);
+            color: var(--or);
+            border: 1px solid rgba(245,197,24,0.3);
+            text-transform: uppercase;
+        }
+        .btn-download-edm {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(217,31,42,0.15);
+            border: 1px solid rgba(217,31,42,0.4);
+            border-radius: 6px;
+            color: var(--rouge-vif);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn-download-edm:hover {
+            background: var(--rouge);
+            color: #fff;
+            border-color: var(--rouge-vif);
+            box-shadow: 0 6px 20px rgba(217,31,42,0.4);
+            transform: translateY(-2px);
+        }
+        .edm-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(245,197,24,0.06);
+            border: 1px solid rgba(245,197,24,0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: rgba(242,244,248,0.8);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .edm-note i {
+            color: var(--or);
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .edm-note strong {
+            color: var(--or);
+            font-weight: 600;
+        }
+        .edm-kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--blanc);
+            font-size: 0.8em;
         }
 
-        .hero { position: relative; min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 60px 20px; }
-        .hero-img { position: absolute; inset: 0; background-image: linear-gradient(to bottom, rgba(13,17,23,0.55) 0%, rgba(13,17,23,0.92) 100%), url('https://i.ibb.co/NRvv9fL/BANNIERE.png'); background-size: cover; background-position: center 30%; filter: saturate(0.6); }
-        .hero-grad-bottom { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,17,23,0.55) 0%, rgba(13,17,23,0.92) 100%); }
-        .hero-grad-left { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,12,16,0.25) 0%, rgba(8,12,16,0.0) 55%); }
-        .hero-redline { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, transparent 0%, var(--rouge) 30%, var(--rouge) 70%, transparent 100%); }
+        /* ════════════════════════════════════════
+           GUIDE D'INSTALLATION
+        ════════════════════════════════════════ */
+        .install-section {
+            padding: 80px 48px;
+            max-width: 1100px;
 
-        .hero-content { position: relative; text-align: center; max-width: 780px; padding: 0 48px 72px; }
-        .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gris); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 40px; height: 1px; background: linear-gradient(to right, transparent, var(--gris)); }
-        .hero-eyebrow::after { transform: scaleX(-1); }
-        .hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; line-height: 1; text-transform: uppercase; letter-spacing: 3px; color: #fff; margin-bottom: 16px; }
-        .hero-title em { font-style: normal; color: var(--rouge); display: block; }
-        .hero-sub { font-size: 1.05rem; font-weight: 300; color: rgba(244,246,250,0.65); margin-bottom: 36px; letter-spacing: 0.5px; }
-
-        .gallery-section { padding: 0 0 80px; }
-        .gallery-header { display: flex; align-items: center; justify-content: space-between; padding: 0 48px 32px; max-width: 1100px; margin: 0 auto; }
-        .section-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--rouge); margin-bottom: 8px; }
-        .section-ttl { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800; }
-
-        /* Masonry columns: changed to 3 columns */
-        .gallery-grid {
-            columns: 3;
-            column-gap: 3px;
-            padding: 0 3px;
-        }
-
-        .g-item { position: relative; overflow: hidden; background: var(--fond2); break-inside: avoid; margin-bottom: 3px; display: block; cursor: zoom-in !important; }
-        .g-item img { width: 100%; height: auto; display: block; transition: transform 0.5s ease, filter 0.4s ease; filter: brightness(0.9) saturate(0.9); }
-        .g-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1.1); }
-
-        .lightbox { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.95); backdrop-filter: blur(16px); align-items: center; justify-content: center; padding: 20px; }
-        .lightbox.open { display: flex; }
-        .lightbox-img { width: 92vw; height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.8); animation: lbIn 0.25s ease; }
-
-        @media (max-width: 768px) {
-            .gallery-grid { columns: 2; }
-        }
-    </style>
-</head>
-<body>
-
-<!-- Barre de navigation -->
-<nav class="topbar">
-    <a class="topbar-brand" href="/">
-        <span class="topbar-brand-dot"></span>
-        Skotaz Modding
-    </a>
-    <span class="topbar-badge">PS6G | BSPP</span>
-</nav>
-
-<section class="hero">
-    <div class="hero-img"></div>
-    <div class="hero-grad-bottom"></div>
-    <div class="hero-grad-left"></div>
-    <div class="hero-redline"></div>
-
-    <div class="hero-content">
-        <p class="hero-eyebrow">Brigade de Sapeurs-Pompiers de Paris</p>
-        <h1 class="hero-title">
-            PS6G
-            <em>Premiers Secours</em>
-        </h1>
-        <p class="hero-sub">6<sup>e</sup> Génération — Véhicule GTA V</p>
-
-        <div class="hero-tags">
-            <span class="tag tag-red">BSPP</span>
-            <span class="tag tag-blue">GTA V</span>
-            <span class="tag tag-gold">Haute Qualité</span>
-            <span class="tag tag-green">Version 1.1</span>
-        </div>
-
-        <a href="https://drive.google.com/file/d/18TrJjVXvhsXQ5npQn4yMzEa2iVHg-A5Y/view?usp=sharing" target="_blank" class="btn-download-hero">
-            <span class="btn-icon"><i class="fas fa-download"></i></span>
-            <span class="btn-text-block">
-                <span class="btn-main-text">Télécharger</span>
-                <span class="btn-sub-text">Gratuit</span>
-            </span>
-        </a>
-    </div>
-
-    <div class="scroll-hint">
-        <span>Défiler</span>
-        <div class="scroll-line"></div>
-    </div>
-</section>
-
-<!-- GALERIE -->
-<section class="gallery-section">
-    <div class="gallery-header">
-        <div>
-            <p class="section-eyebrow">Galerie</p>
-            <h2 class="section-ttl">Captures en jeu</h2>
-        </div>
-        <span class="gallery-count">11</span>
-    </div>
-
-    <div class="gallery-grid" id="gallery">
-        <div class="g-item" onclick="openLightbox(0)"><img src="https://i.postimg.cc/7DC1X72w/GTA5-2026-05-31-22-49.png" alt="PS6G capture 1" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(1)"><img src="https://i.postimg.cc/QDYkpSHt/GTA5-2026-05-31-22-50.png" alt="PS6G capture 2" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(2)"><img src="https://i.postimg.cc/zN2SnpV8/GTA5-2026-05-31-22-51.png" alt="PS6G capture 3" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(3)"><img src="https://i.postimg.cc/fsqjx5kF/GTA5-2026-05-31-22-55.png" alt="PS6G capture 4" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(4)"><img src="https://i.postimg.cc/Vfhqms39/GTA5-2026-05-31-22-55-1.png" alt="PS6G capture 5" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(5)"><img src="https://i.postimg.cc/6WPrt6DR/GTA5-2026-05-31-22-55-2.png" alt="PS6G capture 6" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(6)"><img src="https://i.ibb.co/CDhYghR/GTA5-2026-05-31-22-59.png" alt="PS6G capture 7" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(7)"><img src="https://i.postimg.cc/M6L7qZhK/GTA5-2026-05-31-22-58.png" alt="PS6G capture 8" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(8)"><img src="https://i.postimg.cc/9mkdCXvm/GTA5-2026-05-31-22-58-1.png" alt="PS6G capture 9" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(9)"><img src="https://i.postimg.cc/KbprnQRm/GTA5-2026-05-31-22-50-1.png" alt="PS6G capture 10" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(10)"><img src="https://i.postimg.cc/Ch2GSMWF/GTA5-2026-05-31-22-59.png" alt="PS6G capture 11" loading="lazy"></div>
-        <div class="g-item" onclick="openLightbox(11)"><img src="https://i.postimg.cc/jx2Hpnkt/GTA5-2026-05-31-20-06.png" alt="PS6G capture 12" loading="lazy"></div>
-    </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
-    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-    <button class="lightbox-nav prev" onclick="lbPrev()"><i class="fas fa-chevron-left"></i></button>
-    <img class="lightbox-img" id="lbImg" src="" alt="">
-    <button class="lightbox-nav next" onclick="lbNext()"><i class="fas fa-chevron-right"></i></button>
-    <div class="lightbox-counter" id="lbCounter"></div>
-</div>
-
-<script>
-    const images = [
-        'https://i.postimg.cc/7DC1X72w/GTA5-2026-05-31-22-49.png',
-        'https://i.postimg.cc/QDYkpSHt/GTA5-2026-05-31-22-50.png',
-        'https://i.postimg.cc/zN2SnpV8/GTA5-2026-05-31-22-51.png',
-        'https://i.postimg.cc/fsqjx5kF/GTA5-2026-05-31-22-55.png',
-        'https://i.postimg.cc/Vfhqms39/GTA5-2026-05-31-22-55-1.png',
-        'https://i.postimg.cc/6WPrt6DR/GTA5-2026-05-31-22-55-2.png',
-        'https://i.ibb.co/CDhYghR/GTA5-2026-05-31-22-59.png',
-        'https://i.postimg.cc/M6L7qZhK/GTA5-2026-05-31-22-58.png',
-        'https://i.postimg.cc/9mkdCXvm/GTA5-2026-05-31-22-58-1.png',
-        'https://i.postimg.cc/KbprnQRm/GTA5-2026-05-31-22-50-1.png',
-        'https://i.postimg.cc/Ch2GSMWF/GTA5-2026-05-31-22-59.png',
-        'https://i.postimg.cc/jx2Hpnkt/GTA5-2026-05-31-20-06.png',
-    ];
-    let current = 0;
-
-    function openLightbox(i) { current = i; updateLightbox(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
-    function closeLightboxOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
-    function lbPrev() { current = (current - 1 + images.length) % images.length; updateLightbox(); }
-    function lbNext() { current = (current + 1) % images.length; updateLightbox(); }
-    function updateLightbox() { const img = document.getElementById('lbImg'); img.style.opacity = '0'; setTimeout(() => { img.src = images[current]; img.style.opacity = '1'; img.style.transition = 'opacity 0.2s ease'; }, 100); document.getElementById('lbCounter').textContent = (current + 1) + ' / ' + images.length; }
-    document.addEventListener('keydown', (e) => { if (!document.getElementById('lightbox').classList.contains('open')) return; if (e.key === 'ArrowLeft') lbPrev(); if (e.key === 'ArrowRight') lbNext(); if (e.key === 'Escape') closeLightbox(); });
-</script>
-</body>
-</html>
