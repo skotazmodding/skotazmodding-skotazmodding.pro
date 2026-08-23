@@ -8,6 +8,8 @@ RewriteRule ^accueil/?$ /accueil.html [L]
 RewriteRule ^pack-eup/?$ /pack-eup.html [L]
 RewriteRule ^bspp-ps6g/?$ /bspp-ps6g.html [L]
 RewriteRule ^PS6G/?$ /bspp-ps6g [L,R=301]
+RewriteRule ^bspp-ps6g/?$ /bspp-pma.html [L]
+RewriteRule ^PS6G/?$ /bspp-pma [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
