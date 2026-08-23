@@ -10,8 +10,8 @@ RewriteRule ^bspp-ps6g/?$ /bspp-ps6g.html [L]
 RewriteRule ^PS6G/?$ /bspp-ps6g [L,R=301]
 RewriteRule ^bspp-pma/?$ /bspp-pma.html [L]
 RewriteRule ^PMA/?$ /bspp-pma [L,R=301]
-RewriteRule ^gn-rs3/?$ /bspp-pma.html [L]
-RewriteRule ^RS3/?$ /bspp-pma [L,R=301]
+RewriteRule ^gn-rs3/?$ /gn-rs3.html [L]
+RewriteRule ^RS3/?$ /gn-rs3 [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
