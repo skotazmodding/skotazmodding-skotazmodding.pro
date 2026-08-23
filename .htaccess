@@ -12,6 +12,8 @@ RewriteRule ^bspp-pma/?$ /bspp-pma.html [L]
 RewriteRule ^PMA/?$ /bspp-pma [L,R=301]
 RewriteRule ^gn-rs3/?$ /gn-rs3.html [L]
 RewriteRule ^RS3/?$ /gn-rs3 [L,R=301]
+RewriteRule ^sc-nrbce/?$ /sc-nrbce.html [L]
+RewriteRule ^NRBCE/?$ /sc-nrbce [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
