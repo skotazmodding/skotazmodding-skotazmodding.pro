@@ -22,6 +22,8 @@ RewriteRule ^adn-edn/?$ /adn-edn.html [L]
 RewriteRule ^EDN/?$ /adn-edn [L,R=301]
 RewriteRule ^adn-els/?$ /adn-els.html [L]
 RewriteRule ^ELS/?$ /adn-els [L,R=301]
+RewriteRule ^sdis06-vsav/?$ /sdis06-vsav.html [L]
+RewriteRule ^VSAV06/?$ /sdis06-vsav [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
