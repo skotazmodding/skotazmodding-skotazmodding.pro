@@ -20,6 +20,8 @@ RewriteRule ^gn-duster/?$ /gn-duster.html [L]
 RewriteRule ^DUSTER/?$ /gn-duster [L,R=301]
 RewriteRule ^adn-edn/?$ /adn-edn.html [L]
 RewriteRule ^EDN/?$ /adn-edn [L,R=301]
+RewriteRule ^adn-els/?$ /adn-els.html [L]
+RewriteRule ^ELS/?$ /adn-els [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
