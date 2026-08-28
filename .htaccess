@@ -34,6 +34,8 @@ RewriteRule ^gn-e3008/?$ /gn-e3008.html [L]
 RewriteRule ^E3008GN/?$ /gn-e3008 [L,R=301]
 RewriteRule ^gn-rav4/?$ /gn-rav4.html [L]
 RewriteRule ^RAV4GN/?$ /gn-rav4 [L,R=301]
+RewriteRule ^gn-raptor/?$ /gn-raptor.html [L]
+RewriteRule ^RAPTORGN/?$ /gn-raptor [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
