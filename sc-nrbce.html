@@ -79,16 +79,12 @@
             color: var(--blanc);
             text-decoration: none;
         }
-        .topbar-brand-dot {
-            width: 8px; height: 8px;
-            background: var(--rouge);
+        .topbar-brand-icon {
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--rouge);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 8px var(--rouge); }
-            50% { box-shadow: 0 0 16px var(--rouge), 0 0 32px rgba(217,31,42,0.4); }
+            object-fit: cover;
+            display: block;
         }
         .topbar-badge {
             font-family: 'Barlow Condensed', sans-serif;
@@ -1155,7 +1151,7 @@
 <!-- Barre de navigation -->
 <nav class="topbar">
     <a class="topbar-brand" href="/">
-        <span class="topbar-brand-dot"></span>
+        <img src="/favicon.png" alt="Logo" class="topbar-brand-icon">
         Skotaz Modding
     </a>
     <span class="topbar-badge">Renault Master NRBCE | SC</span>
