@@ -28,6 +28,8 @@ RewriteRule ^autre-mastervasp/?$ /autre-mastervasp.html [L]
 RewriteRule ^MASTERAMENAGE/?$ /autre-mastervasp [L,R=301]
 RewriteRule ^adn-aem/?$ /adn-aem.html [L]
 RewriteRule ^AEM/?$ /adn-aem [L,R=301]
+RewriteRule ^samu-ducato/?$ /samu-ducato.html [L]
+RewriteRule ^FIATDUCATO25/?$ /samu-ducato [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)

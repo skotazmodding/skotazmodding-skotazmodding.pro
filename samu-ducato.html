@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="icon" href="/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiat Ducato 2025 UMH · Skotaz Modding</title>
+    <meta property="og:title" content="Fiat Ducato 2025 UMH · Skotaz Modding">
+    <meta property="og:description" content="Tu trouveras le lien de téléchargement, la procédure d'installation ainsi que des photos prises en jeu du Fiat Ducato 2025 UMH du Service d'Aide Médicale Urgente du 75.">
+    <meta property="og:image" content="https://i.postimg.cc/D0Wmz1gP/image-2026-08-28-181209402.png">
+    <meta property="og:url" content="https://skotazmodding.pro/samu-ducato">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rouge:      #D91F2A;
+            --rouge-vif:  #FF2D3A;
+            --rouge-sombre:#8B0F18;
+            --or:         #F5C518;
+            --blanc:      #F2F4F8;
+            --gris:       #7A8394;
+            --fond:       #080C10;
+            --fond2:      #0F1520;
+            --fond3:      #182030;
+            --bordure:    rgba(255,255,255,0.07);
+            --vert:       #28C76F;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--rouge) var(--fond2);
+        }
+        html::-webkit-scrollbar { width: 4px; }
+        html::-webkit-scrollbar-track { background: var(--fond2); }
+        html::-webkit-scrollbar-thumb { background: var(--rouge); }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--fond);
+            color: var(--blanc);
+            overflow-x: hidden;
+        }
+
+        /* ─── CURSOR ─── */
+        * { cursor: default; }
+        a, button { cursor: pointer; }
+
+/* ════════════════════════════════════════
+           TOPBAR
+        ════════════════════════════════════════ */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            background: rgba(13,17,23,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--bordure);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 64px;
+        }
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blanc);
+            text-decoration: none;
+        }
+        .topbar-brand-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        .topbar-badge {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 4px;
+            background: rgba(0,63,138,0.25);
+            color: #6FA8FF;
+            border: 1px solid rgba(0,63,138,0.5);
+        }
+
+        /* ════════════════════════════════════════
+           HERO — IMAGE PLEIN ÉCRAN
+        ════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://i.postimg.cc/D0Wmz1gP/image-2026-08-28-181209402.png');
+            background-size: cover;
+            background-position: center 60%;
+            transform: scale(1.04);
+            animation: heroZoom 12s ease-out forwards;
+        }
+        @keyframes heroZoom {
+            from { transform: scale(1.04); }
+            to   { transform: scale(1.00); }
+        }
+        /* Dégradés */
+        .hero-grad-bottom {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(8,12,16,0.2) 0%,
+                rgba(8,12,16,0.0) 30%,
+                rgba(8,12,16,0.7) 65%,
+                rgba(8,12,16,1.0) 100%
+            );
+        }
+        .hero-grad-left {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(8,12,16,0.75) 0%,
+                rgba(8,12,16,0.0) 55%
+            );
+        }
+        /* Ligne rouge gauche décorative */
+        .hero-redline {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent 0%, var(--rouge) 30%, var(--rouge) 70%, transparent 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 0 48px 72px;
+            max-width: 680px;
+        }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rouge-vif);
+            opacity: 0;
+            animation: fadeUp 0.7s 0.3s ease forwards;
+        }
+        .hero-eyebrow::after {
+            content: '';
+            flex: 1;
+            max-width: 60px;
+            height: 1px;
+            background: var(--rouge);
+            opacity: 0.5;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            line-height: 0.92;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.5s ease forwards;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--rouge-vif);
+            display: block;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(242,244,248,0.55);
+            letter-spacing: 1px;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.7s ease forwards;
+        }
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.85s ease forwards;
+        }
+        .tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 3px;
+            border: 1px solid;
+        }
+        .tag-red   { color: #FF8080; background: rgba(217,31,42,0.12); border-color: rgba(217,31,42,0.3); }
+        .tag-blue  { color: #80AAFF; background: rgba(0,63,138,0.15); border-color: rgba(0,63,138,0.4); }
+        .tag-green { color: #80E0A0; background: rgba(40,199,111,0.1); border-color: rgba(40,199,111,0.3); }
+        .tag-gold  { color: var(--or); background: rgba(245,197,24,0.08); border-color: rgba(245,197,24,0.3); }
+
+        /* ─── BOUTON DOWNLOAD HÉRO ─── */
+        .btn-download-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 40px 18px 28px;
+            background: var(--rouge);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(217,31,42,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
+            transition: all 0.25s ease;
+            opacity: 0;
+            animation: fadeUp 0.7s 1s ease forwards;
+        }
+        .btn-download-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        .btn-download-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-download-hero:hover::after { left: 160%; }
+        .btn-download-hero:hover {
+            background: var(--rouge-vif);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 50px rgba(217,31,42,0.65), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .btn-icon {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .btn-text-block { text-align: left; }
+        .btn-main-text { display: block; line-height: 1; }
+        .btn-sub-text {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0.65;
+            margin-top: 4px;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            right: 48px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            animation: fadeUp 1s 1.5s ease forwards;
+            opacity: 0;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+        @keyframes scrollLine {
+            0%,100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.8; transform: scaleY(0.6); }
+        }
+
+        /* ════════════════════════════════════════
+           SECTION INFOS
+        ════════════════════════════════════════ */
+        .section-info {
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .info-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rouge-vif);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(217,31,42,0.25);
+        }
+        .info-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .info-desc {
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: rgba(242,244,248,0.6);
+            line-height: 1.8;
+        }
+        .info-desc strong { color: var(--blanc); font-weight: 600; }
+
+        /* ─── SPECS TABLE ─── */
+        .specs {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .spec-row {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--bordure);
+            gap: 16px;
+            transition: background 0.2s;
+        }
+        .spec-row:last-child { border-bottom: none; }
+        .spec-row:hover { background: rgba(255,255,255,0.02); }
+        .spec-icon {
+            width: 30px;
+            text-align: center;
+            color: var(--rouge-vif);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .spec-key {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gris);
+            width: 120px;
+            flex-shrink: 0;
+        }
+        .spec-val {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blanc);
+            letter-spacing: 1px;
+        }
+        .spec-val .highlight { color: var(--rouge-vif); }
+
+        /* ════════════════════════════════════════
+           GALERIE
+        ════════════════════════════════════════ */
+        .gallery-section {
+            padding: 0 0 80px;
+        }
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rouge-vif);
+            margin-bottom: 8px;
+        }
+        .section-ttl {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .gallery-count {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.06);
+            letter-spacing: -2px;
+        }
+
+        /* Masonry columns */
+        .gallery-grid {
+            columns: 4;
+            column-gap: 3px;
+            padding: 0 3px;
+        }
+
+        .g-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--fond2);
+            break-inside: avoid;
+            margin-bottom: 3px;
+            display: block;
+            cursor: zoom-in !important;
+        }
+
+        .g-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease, filter 0.4s ease;
+            filter: brightness(0.9) saturate(0.9);
+        }
+        .g-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1) saturate(1.1);
+        }
+        .g-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(8,12,16,0.35);
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .g-item:hover::after { opacity: 0; }
+
+        /* Lightbox overlay */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox-img {
+            width: 92vw;
+            height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            animation: lbIn 0.25s ease;
+        }
+        @keyframes lbIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .lightbox-close:hover { color: #fff; }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 48px; height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox-nav:hover { background: rgba(217,31,42,0.3); border-color: var(--rouge); color: #fff; }
+        .lightbox-nav.prev { left: 20px; }
+        .lightbox-nav.next { right: 20px; }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ════════════════════════════════════════
+           SECTION DESCRIPTION — PORTES & EXTRAS
+        ════════════════════════════════════════ */
+        .desc-section {
+            padding: 80px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid var(--bordure);
+        }
+        .desc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 28px;
+            margin-top: 36px;
+        }
+        .desc-card {
+            background: var(--fond2);
+            border: 1px solid var(--bordure);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.25s;
+        }
+        .desc-card:hover { border-color: rgba(217,31,42,0.3); }
+        .desc-card-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--bordure);
+            background: rgba(255,255,255,0.02);
+        }
+        .desc-card-icon {
+            width: 32px; height: 32px;
+            border-radius: 6px;
+            background: rgba(217,31,42,0.12);
+            border: 1px solid rgba(217,31,42,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rouge-vif);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+        .desc-card-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gris);
+        }
+        .desc-card-body { padding: 16px 20px; }
+
+        .veh-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--rouge-vif);
+            letter-spacing: 2px;
+        }
+
+        .ref-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ref-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 7px 10px;
+            border-radius: 5px;
+            transition: background 0.15s;
+        }
+        .ref-item:hover { background: rgba(255,255,255,0.03); }
+        .ref-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--or);
+            flex-shrink: 0;
+            min-width: 110px;
+            padding-top: 1px;
+        }
+        .ref-val {
+            font-size: 0.82rem;
+            color: rgba(242,244,248,0.65);
+            line-height: 1.4;
+        }
+
+        .extra-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 7px 10px;
+            border-radius: 5px;
+            transition: background 0.15s;
+        }
+        .extra-item:hover { background: rgba(255,255,255,0.03); }
+        .extra-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            width: 22px; height: 22px;
+            border-radius: 4px;
+            background: rgba(217,31,42,0.12);
+            border: 1px solid rgba(217,31,42,0.25);
+            color: var(--rouge-vif);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .extra-val {
+            font-size: 0.82rem;
+            color: rgba(242,244,248,0.65);
+            line-height: 1.4;
+        }
+
+        /* ════════════════════════════════════════
+           SECTION PRESET EDM
+        ════════════════════════════════════════ */
+        .edm-section {
+            padding: 80px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid var(--bordure);
+        }
+        .edm-container {
+            background: var(--fond2);
+            border: 1px solid var(--bordure);
+            border-radius: 12px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+        .edm-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--rouge-vif), var(--or));
+        }
+        .edm-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .edm-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .edm-badge-v4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(245,197,24,0.15);
+            color: var(--or);
+            border: 1px solid rgba(245,197,24,0.3);
+            text-transform: uppercase;
+        }
+        .btn-download-edm {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(217,31,42,0.15);
+            border: 1px solid rgba(217,31,42,0.4);
+            border-radius: 6px;
+            color: var(--rouge-vif);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn-download-edm:hover {
+            background: var(--rouge);
+            color: #fff;
+            border-color: var(--rouge-vif);
+            box-shadow: 0 6px 20px rgba(217,31,42,0.4);
+            transform: translateY(-2px);
+        }
+        .edm-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(245,197,24,0.06);
+            border: 1px solid rgba(245,197,24,0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: rgba(242,244,248,0.8);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .edm-note i {
+            color: var(--or);
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .edm-note strong {
+            color: var(--or);
+            font-weight: 600;
+        }
+        .edm-kbd {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--blanc);
+            font-size: 0.8em;
+        }
+
+        /* ════════════════════════════════════════
+           GUIDE D'INSTALLATION
+        ════════════════════════════════════════ */
+        .install-section {
+            padding: 80px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid var(--bordure);
+        }
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            counter-reset: step-counter;
+            margin-top: 36px;
+        }
+        .step-card {
+            display: flex;
+            gap: 0;
+            position: relative;
+        }
+        .step-timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 56px;
+            flex-shrink: 0;
+        }
+        .step-num {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: var(--fond3);
+            border: 2px solid var(--bordure);
+            color: var(--gris);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .step-num.active {
+            background: rgba(217,31,42,0.12);
+            border-color: rgba(217,31,42,0.5);
+            color: var(--rouge-vif);
+            box-shadow: 0 0 20px rgba(217,31,42,0.2);
+        }
+        .step-num.done {
+            background: rgba(40,199,111,0.1);
+            border-color: var(--vert);
+            color: var(--vert);
+        }
+        .step-vline {
+            width: 1px;
+            flex: 1;
+            min-height: 24px;
+            background: var(--bordure);
+            margin: 4px 0;
+        }
+        .step-card:last-child .step-vline { display: none; }
+        .step-body {
+            flex: 1;
+            padding: 6px 0 32px 20px;
+        }
+        .step-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .step-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--blanc);
+        }
+        .step-desc {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(242,244,248,0.6);
+            line-height: 1.7;
+        }
+        .step-desc strong { color: var(--blanc); font-weight: 600; }
+
+        .path-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(245,197,24,0.3);
+            border-left: 3px solid var(--or);
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--or);
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        .path-box i { opacity: 0.6; font-size: 0.8em; }
+
+        .code-wrap { position: relative; margin-top: 14px; }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: #161B22;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-radius: 8px 8px 0 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gris);
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+        .code-block {
+            background: #0D1117;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 0 0 8px 8px;
+            padding: 18px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: #7FFFD4;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            display: block;
+        }
+        .btn-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(217,31,42,0.15);
+            border: 1px solid rgba(217,31,42,0.3);
+            border-radius: 4px;
+            color: #FF8080;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { background: rgba(217,31,42,0.25); }
+        .btn-copy.copied {
+            background: rgba(40,199,111,0.15);
+            border-color: rgba(40,199,111,0.4);
+            color: var(--vert);
+        }
+
+        .final-card {
+            margin-top: 14px;
+            padding: 20px 24px;
+            background: rgba(40,199,111,0.05);
+            border: 1px solid rgba(40,199,111,0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: rgba(242,244,248,0.7);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .final-icon { font-size: 2rem; flex-shrink: 0; }
+        .final-card strong {
+            display: block;
+            color: var(--vert);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 1000;
+            background: var(--fond3);
+            border: 1px solid rgba(40,199,111,0.4);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--vert);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ════════════════════════════════════════
+           DOWNLOAD CTA
+        ════════════════════════════════════════ */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 48px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--fond2) 0%, #120810 100%);
+            border-top: 1px solid var(--bordure);
+            border-bottom: 1px solid var(--bordure);
+        }
+        .cta-glow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 300px;
+            background: radial-gradient(ellipse, rgba(217,31,42,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse 80% 80% at center, black 0%, transparent 100%);
+        }
+        .cta-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--rouge-vif);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .cta-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-bottom: 12px;
+            position: relative;
+            line-height: 1;
+        }
+        .cta-subtitle {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(242,244,248,0.45);
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .cta-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 28px;
+            position: relative;
+        }
+        .cta-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+        }
+        .cta-meta-item i { font-size: 0.65em; }
+
+        /* ════════════════════════════════════════
+           FOOTER
+        ════════════════════════════════════════ */
+        .footer {
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--bordure);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-brand {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.15);
+            letter-spacing: 0.5px;
+        }
+        .btn-discord-footer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            background: rgba(88,101,242,0.12);
+            border: 1px solid rgba(88,101,242,0.3);
+            border-radius: 6px;
+            color: rgba(165,171,255,0.7);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-discord-footer:hover {
+            background: rgba(88,101,242,0.22);
+            color: #C5CAFF;
+            border-color: rgba(88,101,242,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .topbar { padding: 0 16px; }
+            .hero-content { padding: 0 20px 60px; }
+            .section-info { grid-template-columns: 1fr; padding: 48px 20px; gap: 40px; }
+            .gallery-grid { columns: 2; }
+            .gallery-header { padding: 0 20px 24px; }
+            .desc-grid { grid-template-columns: 1fr; }
+            .desc-section, .edm-section, .install-section { padding: 48px 20px; }
+            .cta-section { padding: 60px 20px; }
+            .footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+            .edm-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<nav class="topbar">
+    <a class="topbar-brand" href="/">
+        <img src="/favicon.png" alt="Logo" class="topbar-brand-icon">
+        Skotaz Modding
+    </a>
+    <span class="topbar-badge">Fiat Ducato 2025 UMH | SAMU 75</span>
+</nav>
+
+<!-- ─ HERO ─ -->
+<section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-grad-bottom"></div>
+    <div class="hero-grad-left"></div>
+    <div class="hero-redline"></div>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow">Service d'Aide Médicale Urgente du 75</p>
+        <h1 class="hero-title">
+            Fiat Ducato
+            <em>UMH</em>
+        </h1>
+        <p class="hero-sub">Véhicule GTA V</p>
+
+        <div class="hero-tags">
+            <span class="tag tag-red">SAMU 75</span>
+            <span class="tag tag-blue">GTA V</span>
+            <span class="tag tag-gold">Haute Qualité</span>
+            <span class="tag tag-green">Version 1.0</span>
+        </div>
+
+        <a href="https://drive.google.com/file/d/1yH0EPxSD3usIfSR8MEMXj672MFH-oZnz/view?usp=sharing" target="_blank" class="btn-download-hero">
+            <span class="btn-icon"><i class="fas fa-download"></i></span>
+            <span class="btn-text-block">
+                <span class="btn-main-text">Télécharger</span>
+                <span class="btn-sub-text">Gratuit</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="scroll-hint">
+        <span>Défiler</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ─ SECTION INFOS ─ -->
+<section class="section-info">
+    <div class="info-left">
+        <p class="info-label">À propos du véhicule</p>
+        <h2 class="info-title"><span class="var-nomduvehicule"></span></h2>
+<p class="info-desc">
+    Le <strong>Fiat Ducato 2025 UMH</strong> (Unité Mobile Hospitalière) est le véhicule de réanimation préhospitalière de pointe déployé par les équipes médicales du <strong>SAMU 75</strong>. Cette reproduction pour GTA V a été réalisée avec une extrême rigueur, intégrant le design récent du fourgon, la sérigraphie officielle parisienne, l'aménagement complexe de la cellule sanitaire et la signalisation lumineuse spécifique au modèle réel.
+    <br><br>
+    Conçu comme un véritable hôpital sur roues pour faire face aux détresses vitales, ce véhicule apporte une dimension exceptionnelle aux interventions médicales. Il permet aux joueurs de prendre en charge les urgences absolues avec une immersion et un réalisme sans précédent.
+</p>
+    </div>
+
+    <div class="info-right">
+        <p class="info-label">Caractéristiques</p>
+        <div class="specs">
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-truck"></i></span>
+                <span class="spec-key">Véhicule</span>
+                <span class="spec-val">Fiat Ducato <span class="highlight">UMH</span></span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-calendar-alt"></i></span>
+                <span class="spec-key">Génération</span>
+                <span class="spec-val"><span class="highlight">2025</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-shield-alt"></i></span>
+                <span class="spec-key">Unité</span>
+                <span class="spec-val">SAMU 75</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-gamepad"></i></span>
+                <span class="spec-key">Jeu</span>
+                <span class="spec-val">GTA V · LSPDFR</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-tag"></i></span>
+                <span class="spec-key">Format</span>
+                <span class="spec-val">Add-on - DLC</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-lightbulb"></i></span>
+                <span class="spec-key">Gyrophares</span>
+                <span class="spec-val">ELS / Non ELS Compatible</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-euro-sign"></i></span>
+                <span class="spec-key">Prix</span>
+                <span class="spec-val"><span class="highlight">Gratuit</span></span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-icon"><i class="fas fa-layer-group"></i></span>
+                <span class="spec-key">Version</span>
+                <span class="spec-val">1</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─ GALERIE ─ -->
+<section class="gallery-section">
+    <div class="gallery-header">
+        <div>
+            <p class="section-eyebrow">Galerie</p>
+            <h2 class="section-ttl">Captures en jeu</h2>
+        </div>
+        <span class="gallery-count">5</span>
+    </div>
+
+        <div class="gallery-grid" id="gallery">
+        <div class="g-item" onclick="openLightbox(1)">
+            <img src="https://i.postimg.cc/4yryHn27/image-2026-08-28-181231179.png" alt="FIATDUCATO25 capture 2" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(2)">
+            <img src="https://i.postimg.cc/9QP0zmdf/image-2026-08-28-181306825.png" alt="FIATDUCATO25 capture 3" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(3)">
+            <img src="https://i.postimg.cc/yNvNXLpw/image-2026-08-28-181322269.png" alt="FIATDUCATO25 capture 4" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(4)">
+            <img src="https://i.postimg.cc/zBQX4Vrw/image-2026-08-28-181343661.png" alt="FIATDUCATO25 capture 5" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- ─ LIGHTBOX ─ -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav prev" onclick="lbPrev()"><i class="fas fa-chevron-left"></i></button>
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <button class="lightbox-nav next" onclick="lbNext()"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter" id="lbCounter"></div>
+</div>
+
+<!-- ─ SECTION DESCRIPTION ─ -->
+<section class="desc-section">
+    <p class="section-eyebrow">Référence technique</p>
+    <h2 class="section-ttl">Description du véhicule</h2>
+
+    <div class="desc-grid">
+        <!-- Véhicule -->
+        <div class="desc-card">
+            <div class="desc-card-head">
+                <span class="desc-card-icon"><i class="fas fa-truck"></i></span>
+                <span class="desc-card-title">Véhicules</span>
+            </div>
+            <div class="desc-card-body">
+                <span class="veh-name">ducato25samu
+                </span>
+            </div>
+        </div>
+
+        <!-- Portes -->
+        <div class="desc-card">
+            <div class="desc-card-head">
+                <span class="desc-card-icon"><i class="fas fa-door-open"></i></span>
+                <span class="desc-card-title">Portes</span>
+            </div>
+            <div class="desc-card-body">
+                <div class="ref-list">
+                    <div class="ref-item">
+                        <span class="ref-key">door_dside_f</span>
+                        <span class="ref-val">Porte Avant Côté Conducteur</span>
+                    </div>
+                    <div class="ref-item">
+                        <span class="ref-key">door_pside_f</span>
+                        <span class="ref-val">Porte Avant Côté Passager</span>
+                    </div>
+                    <div class="ref-item">
+                        <span class="ref-key">door_pside_r</span>
+                        <span class="ref-val">Porte Arrière Battante Droite</span>
+                    </div>
+                    <div class="ref-item">
+                        <span class="ref-key">door_dside_r</span>
+                        <span class="ref-val">Porte Arrière Battante Gauche</span>
+                    </div>
+                    <div class="ref-item">
+                        <span class="ref-key">bonnet</span>
+                        <span class="ref-val">N/A</span>
+                    </div>
+                    <div class="ref-item">
+                        <span class="ref-key">boot</span>
+                        <span class="ref-val">Portes Latéral Droite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extras -->
+        <div class="desc-card">
+            <div class="desc-card-head">
+                <span class="desc-card-icon"><i class="fas fa-sliders-h"></i></span>
+                <span class="desc-card-title">Extras</span>
+            </div>
+            <div class="desc-card-body">
+                <div class="ref-list">
+                    <div class="extra-item">
+                        <span class="extra-num">1</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">2</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">3</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">4</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">5</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">6</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">7</span>
+                        <span class="extra-val">Gyrophares Orange</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">8</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">9</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">10</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">11</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                    <div class="extra-item">
+                        <span class="extra-num">12</span>
+                        <span class="extra-val">N/A</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─ GUIDE D'INSTALLATION ─ -->
+<section class="install-section">
+    <p class="section-eyebrow">Procédure</p>
+    <h2 class="section-ttl">Guide d'installation</h2>
+
+    <div class="steps-list">
+        <!-- Étape 1 -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">01</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation des fichiers</span>
+                </div>
+                <p class="step-desc">
+                    Glisse le dossier <strong>ducato25samu</strong> dans le répertoire suivant :
+                </p>
+                <div class="path-box">
+                    <i class="fas fa-folder-open"></i>
+                    mods &rsaquo; update &rsaquo; x64 &rsaquo; dlcpacks
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">02</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Navigation dans OpenIV</span>
+                </div>
+                <p class="step-desc">
+                    Lance <strong>OpenIV</strong> et navigue jusqu'au répertoire suivant :
+                </p>
+                <div class="path-box">
+                    <i class="fas fa-folder-open"></i>
+                    GTA V &rsaquo; mods &rsaquo; update &rsaquo; update.rpf &rsaquo; common &rsaquo; data
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">03</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Configuration du DLC List</span>
+                </div>
+                <p class="step-desc">
+                    Ouvre le fichier <strong>dlclist.xml</strong> et ajoute la ligne suivante à la fin de la liste :
+                </p>
+                <div class="code-wrap">
+                    <div class="code-header">
+                        dlclist.xml
+                        <button class="btn-copy" id="copyBtn" onclick="copyCode()">
+                            <i class="fas fa-copy"></i> Copier
+                        </button>
+                    </div>
+                    <code class="code-block" id="installCode">&lt;Item&gt;dlcpacks:/ducato25samu/&lt;/Item&gt;</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active">04</div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation ELS</span>
+                </div>
+                <p class="step-desc">
+                    Glisse le fichier <strong>ducato25samu.xml</strong> dans le répertoire suivant :
+                </p>
+                <div class="path-box">
+                    <i class="fas fa-folder-open"></i>
+                    ELS &rsaquo; pack_default
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminé -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num done"><i class="fas fa-check" style="font-size:0.75em;"></i></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
+                    <span class="step-name">Installation terminée</span>
+                </div>
+                <div class="final-card">
+                    <span class="final-icon">🚨</span>
+                    <div>
+                        <strong>Prêt à jouer</strong>
+                        Lance GTA V et profite du <span class="var-nomduvehicule"></span>. Bon jeu !
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─ CTA TÉLÉCHARGEMENT ─ -->
+<section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="cta-grid-bg"></div>
+    <p class="cta-label">Téléchargement gratuit</p>
+    <h2 class="cta-title">Prêt à intervenir ?</h2>
+    <p class="cta-subtitle">Télécharge le <span class="var-nomduvehicule"></span> et rejoins notre serveur</p>
+
+    <a href="https://drive.google.com/file/d/1yH0EPxSD3usIfSR8MEMXj672MFH-oZnz/view?usp=sharing" target="_blank" class="btn-download-hero">
+        <span class="btn-icon"><i class="fas fa-download"></i></span>
+        <span class="btn-text-block">
+            <span>Télécharger le <span class="var-nomduvehicule"></span></span>
+        </span>
+    </a>
+
+    <div class="cta-meta">
+        <span class="cta-meta-item"><i class="fas fa-check-circle"></i> Gratuit</span>
+        <span class="cta-meta-item"><i class="fas fa-shield-alt"></i> Sécurisé</span>
+        <span class="cta-meta-item"><i class="fas fa-gamepad"></i> GTA V Ready</span>
+    </div>
+</section>
+
+<!-- ─ FOOTER ─ -->
+<footer class="footer">
+    <div class="footer-left">
+        <span class="footer-brand">Skotaz Modding</span>
+        <span class="footer-copy"><span class="var-nomduvehicule"></span></span>
+    </div>
+    <a href="https://discord.gg/FbXFCpQXT9" target="_blank" class="btn-discord-footer">
+        <i class="fab fa-discord"></i> Rejoindre le Discord
+    </a>
+</footer>
+
+<script>
+    const images = [
+        'https://i.postimg.cc/D0Wmz1gP/image-2026-08-28-181209402.png',
+        'https://i.postimg.cc/4yryHn27/image-2026-08-28-181231179.png',
+        'https://i.postimg.cc/9QP0zmdf/image-2026-08-28-181306825.png',
+        'https://i.postimg.cc/yNvNXLpw/image-2026-08-28-181322269.png',
+        'https://i.postimg.cc/zBQX4Vrw/image-2026-08-28-181343661.png',
+    ];
+    let current = 0;
+
+    function openLightbox(i) {
+        current = i;
+        updateLightbox();
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function closeLightboxOutside(e) {
+        if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+    function lbPrev() { current = (current - 1 + images.length) % images.length; updateLightbox(); }
+    function lbNext() { current = (current + 1) % images.length; updateLightbox(); }
+    function updateLightbox() {
+        const img = document.getElementById('lbImg');
+        img.style.opacity = '0';
+        setTimeout(() => {
+            img.src = images[current];
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.2s ease';
+        }, 100);
+        document.getElementById('lbCounter').textContent = (current + 1) + ' / ' + images.length;
+    }
+    document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('lightbox').classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') lbPrev();
+        if (e.key === 'ArrowRight') lbNext();
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    function showToast() {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => { t.classList.remove('show'); }, 3000);
+    }
+
+    function copyCode() {
+        const code = document.getElementById('installCode').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copié';
+            showToast();
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copier';
+            }, 2500);
+        });
+    }
+
+    function copyEdmCode() {
+        const code = document.getElementById('edmCode').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            const btn = document.getElementById('copyEdmBtn');
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copié';
+            showToast();
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copier';
+            }, 2500);
+        });
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.spec-row, .g-item, .desc-card, .edm-container, .step-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(12px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        obs.observe(el);
+    });
+
+    const nomduvehicule = "Fiat Ducato 2025 UMH";
+    document.querySelectorAll('.var-nomduvehicule').forEach(el => el.textContent = nomduvehicule);
+
+
+</script>
+</body>
+</html>
