@@ -1202,7 +1202,7 @@
             text-transform: uppercase;
             margin-bottom: 4px;
         }
-
+        
         /* Le bouton de téléchargement jaune */
         .btn-download-issue {
             display: inline-flex;
@@ -1228,6 +1228,30 @@
             color: #fff;
         }
         
+         /* Le bouton de téléchargement rouge */
+        .btn-download-issue2 {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(245, 24, 24, 0.15);
+            border: 1px solid rgba(245, 24, 24, 0.3);
+            border-radius: 4px;
+            color: var(--rouge);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-download-issue2:hover {
+            background: rgba(245, 24, 24, 0.25);
+            color: #fff;
+        }
 /* ════════════════════════════════════════
    ÉQUIPE / REMERCIEMENTS
 ════════════════════════════════════════ */
@@ -1376,10 +1400,29 @@
             </div>
             <div class="step-body">
                 <div class="step-head">
+                    <span class="step-name">Installation des PRÉREQUIS</span>
+                </div>
+                <p class="step-desc">
+                    Télécharge et installe <strong>Nightly</strong>.
+                </p>
+               <a href="https://github.com/scripthookvdotnet/scripthookvdotnet-nightly/releases" target="_blank" class="btn-download-issue2">
+                            <i class="fas fa-download"></i> Télécharger Nightly
+                        </a>
+            </div>
+        </div>
+        
+        <!-- Étape 2 -->
+        <div class="step-card">
+            <div class="step-timeline">
+                <div class="step-num active"><i class="fas fa-spinner fa-spin"></i></div>
+                <div class="step-vline"></div>
+            </div>
+            <div class="step-body">
+                <div class="step-head">
                     <span class="step-name">Installation des fichiers</span>
                 </div>
                 <p class="step-desc">
-                    Glisse le contenu du dossier <strong>Grand Theft Auto V</strong> à la racine de ton GTA V :
+                    Glisse le dossier <strong>scripts</strong> à la racine de ton GTA V :
                 </p>
                 <div class="path-box">
                     <i class="fas fa-folder-open"></i>
