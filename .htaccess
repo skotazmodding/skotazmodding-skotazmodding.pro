@@ -36,6 +36,8 @@ RewriteRule ^gn-rav4/?$ /gn-rav4.html [L]
 RewriteRule ^RAV4GN/?$ /gn-rav4 [L,R=301]
 RewriteRule ^gn-raptor/?$ /gn-raptor.html [L]
 RewriteRule ^RAPTORGN/?$ /gn-raptor [L,R=301]
+RewriteRule ^adn-otp/?$ /adn-otp.html [L]
+RewriteRule ^OTP/?$ /adn-otp [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
