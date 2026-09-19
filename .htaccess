@@ -38,6 +38,8 @@ RewriteRule ^gn-raptor/?$ /gn-raptor.html [L]
 RewriteRule ^RAPTORGN/?$ /gn-raptor [L,R=301]
 RewriteRule ^adn-otp/?$ /adn-otp.html [L]
 RewriteRule ^OTP/?$ /adn-otp [L,R=301]
+RewriteRule ^bspp-kodiaq/?$ /bspp-kodiaq.html [L]
+RewriteRule ^KodiaqBSPP/?$ /bspp-kodiaq [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
