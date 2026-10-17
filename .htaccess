@@ -46,6 +46,8 @@ RewriteRule ^lulu-partner/?$ /lulu-partner.html [L]
 RewriteRule ^PARTNERLULU/?$ /lulu-partner [L,R=301]
 RewriteRule ^autre-kodiaq/?$ /autre-kodiaq.html [L]
 RewriteRule ^KodiaqDIR/?$ /autre-kodiaq [L,R=301]
+RewriteRule ^autre-radar/?$ /autre-radar.html [L]
+RewriteRule ^RADAR/?$ /autre-radar [L,R=301]
 
 # If a request is for a file that exists, serve it (default behavior)
 # Otherwise, do nothing (avoid forcing SPA fallback)
